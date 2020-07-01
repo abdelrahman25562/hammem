@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "439001324972",
+    "firebase_url": "https://hammem-a9395.firebaseio.com",
+    "project_id": "hammem-a9395",
+    "storage_bucket": "hammem-a9395.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439001324972:android:e3259186752dafb1cb2e09",
+        "android_client_info": {
+          "package_name": "com.hammem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439001324972-1qrq6vtir4jtkk4448tuh2fi7oqpekm6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeJpGiLNlGSGfdG5ATb8Oqs7q3KIWURBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "439001324972-1qrq6vtir4jtkk4448tuh2fi7oqpekm6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
