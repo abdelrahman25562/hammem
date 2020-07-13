@@ -78,6 +78,7 @@ class _RatingState extends State<Rating> {
                 onRatingChanged: (rating) {
                   String image = 'assets/images/1Star.JPG';
                   setState(() {
+                    print('Rating ::::::' + rating.toString());
                     this.rating = rating;
                     if (rating <= 1) {
                       image = 'assets/images/1Star.JPG';
@@ -92,6 +93,7 @@ class _RatingState extends State<Rating> {
                     } else {
                       image = 'assets/images/1Star.JPG';
                     }
+                    print('Rating ::::::' + image);
                     data.addAnswer(
                       element: QuestionModel(
                         id: widget.questionPageNumber,

@@ -1,171 +1,167 @@
 import 'package:flutter/material.dart';
-import 'package:hammem/screens/user/QuestionPage/Question2/Question2.dart';
+import 'package:hammem/Model/questionModel.dart';
+import 'package:hammem/provider/questionProvider.dart';
+import 'package:hammem/screens/pdfViewerPage.dart';
 import 'package:hammem/widgets/StarRating.dart';
+import 'package:provider/provider.dart';
 
 class Part3 extends StatefulWidget {
   static String id = 'Question1-part3';
+
   @override
   _Part3State createState() => _Part3State();
 }
 
 class _Part3State extends State<Part3> {
+  List data1 = [
+    'لعق القضيب',
+    'لعق المهبل',
+    'لعق الدبر(مستقيم)',
+    'لعق الدبر(مرسل)',
+    'وضعيه ال 69',
+  ];
+  List data2 = [
+    'الأستمناء الفردى',
+    'الأستمناء المزدوج',
+    'العض الخفيف',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(children: <Widget>[
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+      body: ListView(
         children: <Widget>[
-          IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-        ],
-      ),
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            'الاستبيان',
-            style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
-          )
-        ],
-      ),
-      Row(
-        textDirection: TextDirection.rtl,
-        children: <Widget>[
-          SizedBox(
-            width: 25.0,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.arrow_back_ios),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
+            ],
           ),
-          Text(
-            'الجنس الفموى',
-            style: TextStyle(
-                fontSize: 20.0, color: Color(0xffFC009E), fontFamily: 'Cairo'),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'الاستبيان',
+                style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
+              )
+            ],
           ),
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          Rating(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2.2,
+          Row(
+            textDirection: TextDirection.rtl,
+            children: <Widget>[
+              SizedBox(
+                width: 25.0,
+              ),
+              Text(
+                'الجنس الفموى',
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: Color(0xffFC009E),
+                    fontFamily: 'Cairo'),
+              ),
+            ],
           ),
-          Txt('لعق القضيب')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          Rating(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2.2,
-          ),
-          Txt('لعق المهبل')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          Rating(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2.8,
-          ),
-          Txt('لعق الدبر(مستقيم)')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          Rating(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2.55,
-          ),
-          Txt('لعق الدبر(مرسل)')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          Rating(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2.25,
-          ),
-          Txt('وضعيه ال 69')
-        ],
-      ),
-      Row(
-        textDirection: TextDirection.rtl,
-        children: <Widget>[
-          SizedBox(
-            width: 10.0,
-          ),
-          Text(
-            'متنوع',
-            style: TextStyle(
-                fontSize: 20.0, color: Color(0xffFC009E), fontFamily: 'Cairo'),
-          ),
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          Rating(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2.6,
-          ),
-          Txt('الأستمناء الفردى')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          Rating(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2.65,
-          ),
-          Txt('الأستمناء المزدوج')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          Rating(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2.3,
-          ),
-          Txt('العض الخفيف')
-        ],
-      ),
-      SizedBox(
-        height: 20.0,
-      ),
-      Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 1),
-          child: Builder(
-            builder: (context) => FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              onPressed: () {
-                Navigator.pushNamed(context, Question2.id);
+          Container(
+            child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: data1.length,
+              itemBuilder: (context, index) {
+                return Rating(
+                  questionPageNumber: 1,
+                  title: data1[index],
+                );
               },
-              child: Ink(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: <Color>[Colors.blueAccent, Colors.pinkAccent]),
-                  borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                ),
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Question2',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25.0,
-                        fontFamily: 'Cairo'),
+            ),
+          ),
+          Row(
+            textDirection: TextDirection.rtl,
+            children: <Widget>[
+              SizedBox(
+                width: 10.0,
+              ),
+              Text(
+                'متنوع',
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: Color(0xffFC009E),
+                    fontFamily: 'Cairo'),
+              ),
+            ],
+          ),
+          Container(
+            child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: data2.length,
+              itemBuilder: (context, index) {
+                return Rating(
+                  questionPageNumber: 1,
+                  title: data2[index],
+                );
+              },
+            ),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Consumer<QuestionProvider>(
+            builder: (context, provider, _) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 1),
+              child: Builder(
+                builder: (context) => FlatButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  onPressed: () {
+//                Navigator.pushNamed(context, Question2.id);
+                    provider.generatePdfAndView(
+                      context: context,
+                      type: QuestionType.Image,
+                      questionNum: 0,
+                    );
+                    print(provider.pdfPath);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => PdfViewerPage(
+                          path: provider.pdfPath,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Ink(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(colors: <Color>[
+                        Colors.blueAccent,
+                        Colors.pinkAccent
+                      ]),
+                      borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                    ),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Question2',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25.0,
+                            fontFamily: 'Cairo'),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          )),
-      SizedBox(
-        height: 55.0,
-      )
-    ]));
+          ),
+          SizedBox(
+            height: 55.0,
+          ),
+        ],
+      ),
+    );
   }
 }

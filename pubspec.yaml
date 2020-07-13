@@ -17,7 +17,6 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  path_provider: ^1.1.0
   timeago: ^2.0.21
   flutter_ffmpeg: ^0.2.10
   filesize: ^1.0.4
@@ -42,7 +41,11 @@ dependencies:
   modal_progress_hud: ^0.1.3
   provider: ^4.0.5
   screen: ^0.0.5
+  path_provider: ^1.6.11
+  flutter_full_pdf_viewer: ^1.0.6
   pdf: ^1.9.0
+  share: ^0.6.4+3
+  esys_flutter_share: ^1.0.2
 
   flutter:
     sdk: flutter
@@ -64,10 +67,15 @@ flutter:
   fonts:
     - family: Cairo
       fonts:
-      - asset: assets/fonts/Cairo-Bold.ttf
-      - asset: assets/fonts/Cairo-Black.ttf
-      - asset: assets/fonts/Cairo-ExtraLight.ttf
-      - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo-Bold.ttf
+        - asset: assets/fonts/Cairo-Black.ttf
+        - asset: assets/fonts/Cairo-ExtraLight.ttf
+        - asset: assets/fonts/Cairo-Regular.ttf
+
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-ExtraLight.ttf
+        - asset: assets/fonts/OpenSans-Regular.ttf
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
