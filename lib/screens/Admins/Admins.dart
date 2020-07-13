@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:hammem/Model/video_info.dart';
 import 'package:hammem/provider/encoding_provider.dart';
 import 'package:hammem/provider/firebase_provider.dart';
+import 'package:hammem/widgets/Custom_detector.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -28,6 +29,7 @@ class _AdminsState extends State<Admins> {
   int _videoDuration = 0;
   String _processPhase = '';
   final bool _debugMode = false;
+  String title;
 
   @override
   void initState() {
@@ -217,40 +219,43 @@ class _AdminsState extends State<Admins> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: _processing ? _getProgressBar() : _getListView()),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 15.0),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width / 1.1,
-          height: MediaQuery.of(context).size.height / 8,
-          child: FloatingActionButton(
-              child: _processing
-                  ? CircularProgressIndicator(
-                      valueColor:
-                          new AlwaysStoppedAnimation<Color>(Colors.white),
-                    )
-                  : Ink(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(colors: <Color>[
-                          Colors.blueAccent,
-                          Colors.pinkAccent
-                        ]),
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      ),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        alignment: Alignment.center,
-                        child: Text(
-                          'upload',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontFamily: 'Cairo'),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        body: Center(child: _processing ? _getProgressBar() : _getListView()),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: 15.0),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width / 1.1,
+            height: MediaQuery.of(context).size.height / 8,
+            child: FloatingActionButton(
+                child: _processing
+                    ? CircularProgressIndicator(
+                        valueColor:
+                            new AlwaysStoppedAnimation<Color>(Colors.white),
+                      )
+                    : Ink(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(colors: <Color>[
+                            Colors.blueAccent,
+                            Colors.pinkAccent
+                          ]),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        ),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          alignment: Alignment.center,
+                          child: Text(
+                            'نشر',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.0,
+                                fontFamily: 'Cairo'),
+                          ),
                         ),
                       ),
-                    ),
-              onPressed: _takeVideo),
+                onPressed: _takeVideo),
+          ),
         ),
       ),
     );
@@ -258,53 +263,61 @@ class _AdminsState extends State<Admins> {
 
   _getListView() {
     return ListView(
+      padding: EdgeInsets.symmetric(
+        vertical: 10.0,
+        horizontal: 10.0,
+      ),
       children: <Widget>[
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.01,
-            ),
-            Image.asset(
-              'assets/images/logout.png',
-              width: 20.0,
-              height: 25,
-              fit: BoxFit.cover,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.7,
-            ),
             Image.asset(
               'assets/images/logo.webp',
               width: 70.0,
               height: 75.0,
               fit: BoxFit.cover,
-            )
+            ),
+            IconButton(icon: Icon(Icons.exit_to_app), onPressed: (){
+              //todo---
+            }),
           ],
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height / 35,
-        ),
-        Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+
+        Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 1.9,
-                child: Text(
-                  'قم برفع فديو على ثقف نفسك',
-                  textAlign: TextAlign.right,
-                  textDirection: TextDirection.ltr,
-                  style: TextStyle(fontFamily: 'Cairo'),
-                ),
-              ),
+             Padding(
+               padding: const EdgeInsets.symmetric(horizontal:20.0),
+               child: Text(
+                    'قم برفع فديو على ثقف نفسك',
+                    textAlign: TextAlign.right,
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(fontFamily: 'Cairo'),
+                  ),
+             ),
+              SizedBox(height: 20.0,),
+              CustomTextField(
+                onClick: (value) {
+                  title = value;
+                },
+                hint: 'قم باختيار عنوان للفيديو',
+                color: Colors.black,
+              )
+
             ]),
         SizedBox(
           height: MediaQuery.of(context).size.height / 15,
         ),
         Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
+
             children: <Widget>[
+              Text(
+                'قم',
+                textAlign: TextAlign.right,
+                textDirection: TextDirection.ltr,
+                style: TextStyle(fontFamily: 'Cairo', color: Color(0xffFC009E)),
+              ),
               SizedBox(
                 width: MediaQuery.of(context).size.width / 2,
                 child: Text(
@@ -314,12 +327,6 @@ class _AdminsState extends State<Admins> {
                   style: TextStyle(fontFamily: 'Cairo'),
                 ),
               ),
-              Text(
-                'قم',
-                textAlign: TextAlign.right,
-                textDirection: TextDirection.ltr,
-                style: TextStyle(fontFamily: 'Cairo', color: Color(0xffFC009E)),
-              ),
             ]),
         SizedBox(
           height: 25.0,
@@ -327,13 +334,10 @@ class _AdminsState extends State<Admins> {
         Center(
           child: Image.asset(
             'assets/images/upload.png',
-            width: MediaQuery.of(context).size.width / 2,
-            height: MediaQuery.of(context).size.height / 3,
+            width: MediaQuery.of(context).size.width *0.35,
+            height: MediaQuery.of(context).size.height *0.25,
             fit: BoxFit.fill,
           ),
-        ),
-        SizedBox(
-          height: 25.0,
         ),
       ],
     );

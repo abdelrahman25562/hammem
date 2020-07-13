@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hammem/provider/Admin.dart';
 import 'package:hammem/provider/modelhub.dart';
@@ -24,162 +25,125 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      backgroundColor: kMainColor,
-      body: ModalProgressHUD(
-        inAsyncCall: Provider.of<Mpdalhub>(context).isloading,
-        child: Form(
-          key: globalKey,
-          child: ListView(
-            children: <Widget>[
-              CustomLogo(),
-              SizedBox(
-                height: height * .01,
-              ),
-              CustomTextField(
-                onClick: (value) {
-                  _email = value;
-                },
-                hint: 'Enter your email',
-                color: kMainColor,
-              ),
-              SizedBox(
-                height: height * .02,
-              ),
-              CustomTextField(
-                onClick: (value) {
-                  password = value;
-                },
-                color: kMainColor,
-                hint: 'Enter your password',
-              ),
-              SizedBox(
-                height: height * .03,
-              ),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 1),
-                  child: Builder(
-                    builder: (context) => FlatButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      onPressed: () {
-                        _validate(context);
-                      },
-                      child: Ink(
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(colors: <Color>[
-                            Colors.blueAccent,
-                            Colors.pinkAccent
-                          ]),
-                          borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                        ),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          alignment: Alignment.center,
-                          child: Text(
-                            'Login',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25.0,
-                                fontFamily: 'Cairo'),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        backgroundColor: kMainColor,
+        body: ModalProgressHUD(
+          inAsyncCall: Provider.of<Mpdalhub>(context).isloading,
+          child: Form(
+            key: globalKey,
+            child: ListView(
+              children: <Widget>[
+                CustomLogo(),
+                SizedBox(
+                  height: height * .01,
+                ),
+                CustomTextField(
+                  onClick: (value) {
+                    _email = value;
+                  },
+                  hint: 'الايميل',
+                  color: Colors.black
+                ),
+                SizedBox(
+                  height: height * .03,
+                ),
+                CustomTextField(
+                  onClick: (value) {
+                    password = value;
+                  },
+                  color: Colors.black,
+                  hint: 'كلمة السر',
+                ),
+                SizedBox(
+                  height: height * .03,
+                ),
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    child: Builder(
+                      builder: (context) => FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        onPressed: () {
+                          _validate(context);
+                        },
+                        child: Ink(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(colors: <Color>[
+                              Colors.blueAccent,
+                              Colors.pinkAccent
+                            ]),
+                            borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                          ),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            alignment: Alignment.center,
+                            child: Text(
+                              'دخول',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                  fontFamily: 'Cairo'),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  )),
-              SizedBox(
-                height: height * .002,
-                width: MediaQuery.of(context).size.width * .02,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Provider.of<AdminMode>(context, listen: false)
-                              .changeisadmin(true);
-                        },
-                        child: Text(
-                          'i\'m an admin',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Provider.of<AdminMode>(context).inadmin
-                                  ? Colors.pinkAccent
-                                  : Colors.blueAccent,
-                              fontFamily: 'Cairo'),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Provider.of<AdminMode>(context, listen: false)
-                              .changeisadmin(false);
-                        },
-                        child: Text(
-                          'i\'m a user',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontFamily: 'Cairo',
-                              color:
-                                  Provider.of<AdminMode>(context, listen: true)
-                                          .inadmin
-                                      ? Colors.blueAccent
-                                      : Colors.pinkAccent),
-                        ),
-                      ),
-                    ),
-                  ],
+                    )),
+                SizedBox(
+                  height: height * .002,
+                  width: MediaQuery.of(context).size.width * .02,
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Don\'t have an account ?',
-                    style: TextStyle(
-                        color: Colors.black, fontSize: 15, fontFamily: 'Cairo'),
-                  ),
-                  SizedBox(
-                    height: height * .02,
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 1),
-                      child: Builder(
-                        builder: (context) => FlatButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          onPressed: () {
-                            Navigator.pushNamed(context, SignUp.id);
-                          },
-                          child: Ink(
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(colors: <Color>[
-                                Colors.blueAccent,
-                                Colors.pinkAccent
-                              ]),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(80.0)),
-                            ),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              alignment: Alignment.center,
-                              child: Text(
-                                'Signup',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25.0,
-                                    fontFamily: 'Cairo'),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: height * .06,
+                    ),
+                    Text(
+                      'ليس لدي حساب',
+                      style: TextStyle(
+                          color: Colors.black, fontSize: 13, fontFamily: 'Cairo'),
+                    ),
+                    SizedBox(
+                      height: height * .02,
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 1),
+                        child: Builder(
+                          builder: (context) => FlatButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            onPressed: () {
+                              Navigator.pushNamed(context, SignUp.id);
+                            },
+                            child: Ink(
+                              decoration: const BoxDecoration(
+                                gradient: LinearGradient(colors: <Color>[
+                                  Colors.blueAccent,
+                                  Colors.pinkAccent
+                                ]),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(80.0)),
+                              ),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.3,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'انشاء حساب',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                      fontFamily: 'Cairo'),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      )),
-                ],
-              ),
-            ],
+                        )),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
