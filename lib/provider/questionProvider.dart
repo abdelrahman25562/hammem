@@ -1,14 +1,13 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hammem/Model/questionModel.dart';
+import 'package:hammem/screens/pdfViewerPage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pdfLib;
-import 'package:printing/printing.dart';
 
 class QuestionProvider extends ChangeNotifier {
   String pdfPath = '';
@@ -33,7 +32,8 @@ class QuestionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  generatePdfAndView({BuildContext context, QuestionType type, int questionNum}) async {
+  generatePdfAndView(
+      {BuildContext context, QuestionType type, int questionNum}) async {
     List<PdfModel> answerData = [];
     var data = await rootBundle.load("assets/fonts/Cairo-Regular.ttf");
     var myFont = pdfLib.Font.ttf(data);
@@ -63,10 +63,14 @@ class QuestionProvider extends ChangeNotifier {
     }
     if (type == QuestionType.Image) {
       questionsAnswers.forEach((element) async {
-        var imageProvider = AssetImage(element.answer);
-        final PdfImage image = await pdfImageFromImageProvider(
-            pdf: pdf.document, image: imageProvider);
-
+        final PdfImage image = PdfImage.file(
+          pdf.document,
+          bytes: (await rootBundle.load(
+            element.answer.split('!')[0],
+          ))
+              .buffer
+              .asUint8List(),
+        );
         answerData.add(
           PdfModel(
             question: element.question,
@@ -81,23 +85,24 @@ class QuestionProvider extends ChangeNotifier {
               children: answerData
                   .map(
                     (e) => pdfLib.Row(
-                  mainAxisAlignment: pdfLib.MainAxisAlignment.start,
-                  crossAxisAlignment: pdfLib.CrossAxisAlignment.center,
-                  children: [
-                    pdfLib.Image(
-                      e.image,
-                      height: 25.0,
-                      width: 125.0,
+                      mainAxisAlignment: pdfLib.MainAxisAlignment.start,
+                      crossAxisAlignment: pdfLib.CrossAxisAlignment.center,
+                      children: [
+                        pdfLib.Container(
+                          width: 100,
+                          height: 25,
+                          color: PdfColors.white,
+                          child: pdfLib.Image(e.image),
+                        ),
+                        pdfLib.Spacer(),
+                        pdfLib.Text(
+                          e.question,
+                          style: myStyle,
+                          textDirection: pdfLib.TextDirection.rtl,
+                        ),
+                      ],
                     ),
-                    pdfLib.Spacer(),
-                    pdfLib.Text(
-                      e.question,
-                      style: myStyle,
-                      textDirection: pdfLib.TextDirection.rtl,
-                    ),
-                  ],
-                ),
-              )
+                  )
                   .toList(),
             ); // Center
           },
@@ -109,49 +114,30 @@ class QuestionProvider extends ChangeNotifier {
     print(':::::::::::' + dir);
     final String path = '$dir/hammemResult.pdf';
     final File file = File(path);
-    await file.writeAsBytes(pdf.save());
+    await file.writeAsBytes(pdf.save()).whenComplete(
+          () =>
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) =>
+                  PdfViewerPage(
+                    path: path,
+                  ),
+            ),
+          ),
+    );
     pdfPath = path;
   }
 
-  Future<PdfImage> pdfImageFromImageProvider(
-      {@required PdfDocument pdf,
-      @required ImageProvider image,
-      ImageConfiguration configuration,
-      ImageErrorListener onError}) async {
-    final Completer<PdfImage> completer = Completer<PdfImage>();
-    final ImageStream stream =
-        image.resolve(configuration ?? ImageConfiguration.empty);
+  Future<PdfImage> pdfImageFromImage(
+      {@required PdfDocument pdf, @required ByteData image}) async {
+    final ByteData bytes = image;
 
-    Future<void> listener(ImageInfo image, bool sync) async {
-      final PdfImage result =
-          await pdfImageFromImage(pdf: pdf, image: image.image);
-      if (!completer.isCompleted) {
-        completer.complete(result);
-      }
-      stream.removeListener(stream);
-    }
-
-    void errorListener(dynamic exception, StackTrace stackTrace) {
-      if (!completer.isCompleted) {
-        completer.complete(null);
-      }
-      if (onError != null) {
-        onError(exception, stackTrace);
-      } else {
-        FlutterError.reportError(
-          FlutterErrorDetails(
-            library: 'printing',
-            exception: exception,
-            stack: stackTrace,
-            silent: true,
-            context: DiagnosticsNode.message('message'),
-          ),
-        );
-      }
-    }
-
-    stream.addListener(listener, onError: errorListener);
-    return completer.future;
+    return PdfImage(
+      pdf,
+      image: bytes.buffer.asUint8List(),
+      width: 150,
+      height: 30,
+    );
   }
 }
 

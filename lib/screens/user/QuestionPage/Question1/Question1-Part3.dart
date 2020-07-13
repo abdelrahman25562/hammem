@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hammem/Model/questionModel.dart';
 import 'package:hammem/provider/questionProvider.dart';
-import 'package:hammem/screens/pdfViewerPage.dart';
 import 'package:hammem/widgets/StarRating.dart';
 import 'package:provider/provider.dart';
 
@@ -123,14 +122,6 @@ class _Part3State extends State<Part3> {
                       context: context,
                       type: QuestionType.Image,
                       questionNum: 0,
-                    );
-                    print(provider.pdfPath);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => PdfViewerPage(
-                          path: provider.pdfPath,
-                        ),
-                      ),
                     );
                   },
                   child: Ink(
