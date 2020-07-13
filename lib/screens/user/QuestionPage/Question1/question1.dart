@@ -77,13 +77,18 @@ class _Question1State extends State<Question1> {
                 ),
               ],
             ),
-            ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                return Rating(
-                  title: data[index],
-                );
-              },
+            Container(
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return Rating(
+                    questionPageNumber: 1,
+                    title: data[index],
+                  );
+                },
+              ),
             ),
             SizedBox(
               height: 20.0,

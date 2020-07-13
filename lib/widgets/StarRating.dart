@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hammem/Model/questionModel.dart';
+import 'package:hammem/provider/questionProvider.dart';
+import 'package:provider/provider.dart';
 
 typedef void RatingChangeCallback(double rating);
 
@@ -46,8 +49,12 @@ class StarRating extends StatelessWidget {
 
 class Rating extends StatefulWidget {
   final String title;
+  final int questionPageNumber;
 
-  Rating({this.title});
+  Rating({
+    @required this.title,
+    @required this.questionPageNumber,
+  });
 
   @override
   _RatingState createState() => new _RatingState();
@@ -58,14 +65,48 @@ class _RatingState extends State<Rating> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        StarRating(
-          rating: rating,
-          onRatingChanged: (rating) => setState(() => this.rating = rating),
+    return Consumer<QuestionProvider>(
+      builder: (context, data, _) => Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10.0,
+          vertical: 2.0,
         ),
-        Txt(widget.title)
-      ],
+        child: Row(
+          children: <Widget>[
+            StarRating(
+                rating: rating,
+                onRatingChanged: (rating) {
+                  String image = 'assets/images/1Star.JPG';
+                  setState(() {
+                    this.rating = rating;
+                    if (rating <= 1) {
+                      image = 'assets/images/1Star.JPG';
+                    } else if (rating > 1 && rating <= 2) {
+                      image = 'assets/images/2Star.JPG';
+                    } else if (rating > 2 && rating <= 3) {
+                      image = 'assets/images/3Star.JPG';
+                    } else if (rating > 3 && rating <= 4) {
+                      image = 'assets/images/4Star.JPG';
+                    } else if (rating > 4 && rating <= 5) {
+                      image = 'assets/images/5Star.JPG';
+                    } else {
+                      image = 'assets/images/1Star.JPG';
+                    }
+                    data.addAnswer(
+                      element: QuestionModel(
+                        id: widget.questionPageNumber,
+                        answer: image,
+                        question: widget.title,
+                        questionType: QuestionType.Image,
+                      ),
+                    );
+                  });
+                }),
+            Spacer(),
+            Txt(widget.title)
+          ],
+        ),
+      ),
     );
   }
 }

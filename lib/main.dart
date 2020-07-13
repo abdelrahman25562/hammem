@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hammem/provider/Admin.dart';
 import 'package:hammem/provider/modelhub.dart';
+import 'package:hammem/provider/questionProvider.dart';
 import 'package:hammem/screens/Admins/Admins.dart';
 import 'package:hammem/screens/SignUp.dart';
 import 'package:hammem/screens/login.dart';
@@ -40,7 +41,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<AdminMode>(
           create: (context) => AdminMode(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => QuestionProvider(),
+        ),
       ],
       child: MaterialApp(
         title: "حميم",
