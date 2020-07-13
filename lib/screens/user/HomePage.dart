@@ -80,54 +80,67 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       body: SafeArea(
         child: ListView(
           children: <Widget>[
-            Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(80.0)),
-              height: MediaQuery.of(context).size.height * 0.40,
-              width: MediaQuery.of(context).size.width / 8,
-              child: DefaultTabController(
-                length: 3,
-                child: TabBarView(
-                  controller: _controller,
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      child: Image.asset(
-                        'assets/images/scroll1.webp',
-                        fit: BoxFit.fill,
+            Padding(
+              padding: const EdgeInsets.only(
+                right: 18.0,
+                left: 18.0,
+                top: 8.0,
+              ),
+              child: Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(80.0)),
+                height: MediaQuery.of(context).size.height * 0.3,
+                width: MediaQuery.of(context).size.width,
+                child: DefaultTabController(
+                  length: 3,
+                  child: TabBarView(
+                    controller: _controller,
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(80.0)),
+                        child: Image.asset(
+                          'assets/images/scroll1.webp',
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: Image.asset(
-                        'assets/images/scroll2.webp',
-                        fit: BoxFit.fill,
+                      Container(
+                        child: Image.asset(
+                          'assets/images/scroll2.webp',
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: Image.asset(
-                        'assets/images/scroll3.webp',
-                        fit: BoxFit.fill,
+                      Container(
+                        child: Image.asset(
+                          'assets/images/scroll3.webp',
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
             Center(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20.0),
-                      bottomRight: Radius.circular(20.0)),
-                  color: Colors.purpleAccent,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  right: 18.0,
+                  left: 18.0,
                 ),
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: TabPageSelector(
-                    controller: _controller,
-                    selectedColor: Colors.white10,
-                    color: Colors.white,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20.0),
+                        bottomRight: Radius.circular(20.0)),
+                    color: Colors.purpleAccent,
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: TabPageSelector(
+                      controller: _controller,
+                      selectedColor: Colors.white,
+                      indicatorSize: 6,
+                    ),
                   ),
                 ),
               ),
@@ -140,34 +153,39 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 right: 70.0,
                 left: 70.0,
               ),
-              child: FlatButton(
-                onPressed: () {
-                  createInterstitialAd()
-                    ..load()
-                    ..show();
-                  Navigator.pushNamed(context, Info.id);
-                },
-                child: Row(
-                  children: <Widget>[
-                    Text(
-                      ' تعريف بالتطبيق  ',
-                      textAlign: TextAlign.center,
-                      textDirection: TextDirection.ltr,
-                      style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
-                    ),
-                  ],
+              child: Container(
+                height: MediaQuery.of(context).size.height*0.1,
+                child: FlatButton(
+                  onPressed: () {
+                    createInterstitialAd()
+                      ..load()
+                      ..show();
+                    Navigator.pushNamed(context, Info.id);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        ' تعريف بالتطبيق  ',
+                        textAlign: TextAlign.center,
+                        textDirection: TextDirection.ltr,
+                        style: TextStyle(fontSize: 15.0, fontFamily: 'Cairo',fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Color(0xffE7AEC3),
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
+                      borderRadius: BorderRadius.circular(10)),
                 ),
-                shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Color(0xffE7AEC3),
-                      width: 1,
-                      style: BorderStyle.solid,
-                    ),
-                    borderRadius: BorderRadius.circular(10)),
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
             Button(
               onClick: () {

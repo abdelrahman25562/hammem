@@ -29,7 +29,7 @@ class _Question2State extends State<Question2> {
         children: <Widget>[
           Text(
             'الاستبيان',
-            style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
+            style: TextStyle(fontSize: 20.0, fontFamily: 'Cairo'),
           )
         ],
       ),

@@ -29,7 +29,7 @@ class _QuestionState extends State<Question> {
         children: <Widget>[
           Text(
             'الاستبيان',
-            style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
+            style: TextStyle(fontSize: 20.0, fontFamily: 'Cairo'),
           )
         ],
       ),
@@ -52,7 +52,7 @@ class _QuestionState extends State<Question> {
           children: <Widget>[
             Text(
               'المداعبة',
-              style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
+              style: TextStyle(fontSize: 20.0, fontFamily: 'Cairo'),
             )
           ]),
       SizedBox(
@@ -64,7 +64,7 @@ class _QuestionState extends State<Question> {
           children: <Widget>[
             Text(
               'الى أى مدى تحب كل من       ',
-              style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
+              style: TextStyle(fontSize: 20.0, fontFamily: 'Cairo'),
             )
           ]),
       Row(
@@ -73,7 +73,7 @@ class _QuestionState extends State<Question> {
           children: <Widget>[
             Text(
               'الممارسات التى سوف تظهر',
-              style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
+              style: TextStyle(fontSize: 20.0, fontFamily: 'Cairo'),
             )
           ]),
       Row(
@@ -83,7 +83,7 @@ class _QuestionState extends State<Question> {
             Text(
               'ضع النجوم على كل سؤال',
               style: TextStyle(
-                  fontSize: 25.0,
+                  fontSize: 20.0,
                   fontFamily: 'Cairo',
                   color: Color(0xffFC009E)),
             )
@@ -95,7 +95,7 @@ class _QuestionState extends State<Question> {
             Text(
               '   بحسب تفضيلك لة',
               style: TextStyle(
-                  fontSize: 25.0,
+                  fontSize: 20.0,
                   fontFamily: 'Cairo',
                   color: Color(0xffFC009E)),
             )

@@ -28,10 +28,11 @@ class Button extends StatelessWidget {
               height: 35.0,
               width: 30.0,
             ),
+            SizedBox(width: 5.0,),
             Text(
               hint,
               textDirection: TextDirection.ltr,
-              style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
+              style: TextStyle(fontSize: 15.0, fontFamily: 'Cairo'),
             ),
           ],
         ),

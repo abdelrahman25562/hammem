@@ -58,7 +58,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       CustomTextField(
                         onClick: (value) {
-                          _password = value;
+                          _country = value;
                         },
                         hint: 'البلد',
                         color:Colors.black,
@@ -78,7 +78,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       CustomTextField(
                         onClick: (value) {
-                          _country = value;
+                          _password = value;
                         },
                         hint: 'كلمة السر',
                         color: Colors.black,
