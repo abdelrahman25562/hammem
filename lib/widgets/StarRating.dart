@@ -45,6 +45,10 @@ class StarRating extends StatelessWidget {
 }
 
 class Rating extends StatefulWidget {
+  final String title;
+
+  Rating({this.title});
+
   @override
   _RatingState createState() => new _RatingState();
 }
@@ -54,9 +58,14 @@ class _RatingState extends State<Rating> {
 
   @override
   Widget build(BuildContext context) {
-    return new StarRating(
-      rating: rating,
-      onRatingChanged: (rating) => setState(() => this.rating = rating),
+    return Row(
+      children: <Widget>[
+        StarRating(
+          rating: rating,
+          onRatingChanged: (rating) => setState(() => this.rating = rating),
+        ),
+        Txt(widget.title)
+      ],
     );
   }
 }
@@ -64,7 +73,9 @@ class _RatingState extends State<Rating> {
 //=================Test========================================//
 class Txt extends StatelessWidget {
   final String txt;
+
   Txt(this.txt);
+
   @override
   Widget build(BuildContext context) {
     return Text(
