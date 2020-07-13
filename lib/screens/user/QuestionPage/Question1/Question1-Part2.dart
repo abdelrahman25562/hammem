@@ -128,7 +128,7 @@ class _Qpart1State extends State<Qpart1> {
 
   takeScreenShot() async {
     RenderRepaintBoundary boundary =
-    previewContainer.currentContext.findRenderObject();
+        previewContainer.currentContext.findRenderObject();
     ui.Image image = await boundary.toImage();
     final directory = (await getApplicationDocumentsDirectory()).path;
     ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);

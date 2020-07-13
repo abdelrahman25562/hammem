@@ -23,7 +23,7 @@ class PdfViewerPage extends StatelessWidget {
           'hammemResult.pdf': bytes3.buffer.asUint8List(),
         },
         '*/*',
-        text: 'My optional text.',
+        text: 'My hammem Results.',
       );
     } catch (e) {
       print('error: $e');
