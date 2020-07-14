@@ -42,17 +42,16 @@ class _Qpart1State extends State<Qpart1> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-          body: ListView(children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            IconButton(
-                icon: Icon(Icons.arrow_back_ios),
-                onPressed: () {
-                  Navigator.pop(context);
-                }),
-          ],
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          leading:   IconButton(
+              icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
         ),
+          body: ListView(children: <Widget>[
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -114,7 +113,7 @@ class _Qpart1State extends State<Qpart1> {
                       'متابعه',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 25.0,
+                          fontSize: 18.0,
                           fontFamily: 'Cairo'),
                     ),
                   ),

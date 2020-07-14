@@ -12,17 +12,16 @@ class _Question2State extends State<Question2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(children: <Widget>[
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          IconButton(
-              icon: Icon(Icons.arrow_back_ios),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          leading:  IconButton(
+              icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
               onPressed: () {
                 Navigator.pop(context);
               }),
-        ],
-      ),
+        ),
+        body: ListView(children: <Widget>[
       Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +83,7 @@ class _Question2State extends State<Question2> {
                       'بدء',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 25.0,
+                          fontSize: 18.0,
                           fontFamily: 'Cairo'),
                     ),
                   ),

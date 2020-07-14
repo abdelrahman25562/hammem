@@ -146,7 +146,7 @@ class _Q5P1State extends State<Q5P1> {
                     'متابعه',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25.0,
+                        fontSize: 18.0,
                         fontFamily: 'Cairo'),
                   ),
                 ),

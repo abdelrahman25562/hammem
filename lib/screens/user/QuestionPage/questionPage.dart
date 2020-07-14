@@ -129,7 +129,7 @@ class _QuestionState extends State<Question> {
                       'بدء',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 25.0,
+                          fontSize: 18.0,
                           fontFamily: 'Cairo'),
                     ),
                   ),
@@ -137,6 +137,9 @@ class _QuestionState extends State<Question> {
               ),
             ),
           )),
-    ]));
+          SizedBox(height: 50.0,),
+    ]
+        )
+    );
   }
 }
