@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hammem/Model/questionModel.dart';
 import 'package:hammem/provider/questionProvider.dart';
+import 'package:hammem/screens/user/QuestionPage/Question2/Question2.dart';
 import 'package:hammem/widgets/StarRating.dart';
 import 'package:provider/provider.dart';
 
@@ -72,7 +73,7 @@ class _Part3State extends State<Part3> {
               itemCount: data1.length,
               itemBuilder: (context, index) {
                 return Rating(
-                  questionPageNumber: 1,
+                  questionPageNumber: 0,
                   title: data1[index],
                 );
               },
@@ -100,7 +101,7 @@ class _Part3State extends State<Part3> {
               itemCount: data2.length,
               itemBuilder: (context, index) {
                 return Rating(
-                  questionPageNumber: 1,
+                  questionPageNumber: 0,
                   title: data2[index],
                 );
               },
@@ -117,12 +118,12 @@ class _Part3State extends State<Part3> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   onPressed: () {
-//                Navigator.pushNamed(context, Question2.id);
                     provider.generatePdfAndView(
                       context: context,
                       type: QuestionType.Image,
                       questionNum: 0,
                     );
+                    Navigator.pushNamed(context, Question2.id);
                   },
                   child: Ink(
                     decoration: const BoxDecoration(

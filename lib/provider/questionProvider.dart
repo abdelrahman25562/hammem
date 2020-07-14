@@ -24,22 +24,33 @@ class QuestionProvider extends ChangeNotifier {
     if (exist) {
       int index = questionsAnswers
           .indexWhere((item) => item.question == element.question);
-      questionsAnswers[index].answer = element.answer;
+      if (questionsAnswers[index].id == 1 &&
+          !questionsAnswers[index].answer.contains(element.answer)) {
+        questionsAnswers[index].answer =
+            questionsAnswers[index].answer + '    ,\n    ' + element.answer;
+        print(':::::' + questionsAnswers[index].answer);
+      } else {
+        questionsAnswers[index].answer = element.answer;
+      }
     } else {
       questionsAnswers.add(element);
     }
-    print(questionsAnswers.length);
+
     notifyListeners();
   }
 
-  generatePdfAndView(
-      {BuildContext context, QuestionType type, int questionNum}) async {
-    List<PdfModel> answerData = [];
+  generatePdfAndView({
+    BuildContext context,
+    QuestionType type,
+    int questionNum,
+  }) async {
+    List<PdfImageModel> answerImagedData = [];
+    List<PdfTextModel> answerTextData = [];
     var data = await rootBundle.load("assets/fonts/Cairo-Regular.ttf");
     var myFont = pdfLib.Font.ttf(data);
     var titleStyle = pdfLib.TextStyle(
       font: myFont,
-      fontSize: 34.0,
+      fontSize: 28.0,
       wordSpacing: 5.0,
     );
     var myStyle = pdfLib.TextStyle(
@@ -63,26 +74,28 @@ class QuestionProvider extends ChangeNotifier {
     }
     if (type == QuestionType.Image) {
       questionsAnswers.forEach((element) async {
-        final PdfImage image = PdfImage.file(
-          pdf.document,
-          bytes: (await rootBundle.load(
-            element.answer.split('!')[0],
-          ))
-              .buffer
-              .asUint8List(),
-        );
-        answerData.add(
-          PdfModel(
-            question: element.question,
-            image: image,
-          ),
-        );
+        if (element.id == questionNum) {
+          final PdfImage image = PdfImage.file(
+            pdf.document,
+            bytes: (await rootBundle.load(
+              element.answer.split('!')[0],
+            ))
+                .buffer
+                .asUint8List(),
+          );
+          answerImagedData.add(
+            PdfImageModel(
+              question: element.question,
+              image: image,
+            ),
+          );
+        }
       });
       pdf.addPage(
         pdfLib.Page(
           build: (pdfLib.Context context) {
             return pdfLib.Column(
-              children: answerData
+              children: answerImagedData
                   .map(
                     (e) => pdfLib.Row(
                       mainAxisAlignment: pdfLib.MainAxisAlignment.start,
@@ -108,28 +121,72 @@ class QuestionProvider extends ChangeNotifier {
           },
         ),
       );
-    }
-
-    final String dir = (await getApplicationDocumentsDirectory()).path;
-    print(':::::::::::' + dir);
-    final String path = '$dir/hammemResult.pdf';
-    final File file = File(path);
-    await file.writeAsBytes(pdf.save()).whenComplete(
-          () =>
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) =>
-                  PdfViewerPage(
-                    path: path,
-                  ),
+    } else if (type == QuestionType.Text) {
+      questionsAnswers.forEach((element) async {
+        if (element.id == questionNum) {
+          answerTextData.add(
+            PdfTextModel(
+              question: element.question,
+              answer: element.answer,
             ),
-          ),
-    );
-    pdfPath = path;
+          );
+          print('len  :::  ' + element.answer);
+        }
+      });
+      pdf.addPage(
+        pdfLib.Page(
+          build: (pdfLib.Context context) {
+            return pdfLib.Column(
+              children: answerTextData
+                  .map(
+                    (e) => pdfLib.Column(
+                      mainAxisAlignment: pdfLib.MainAxisAlignment.start,
+                      crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
+                      children: [
+                        pdfLib.Text(
+                          e.question,
+                          style: titleStyle,
+                          textDirection: pdfLib.TextDirection.rtl,
+                        ),
+                        pdfLib.SizedBox(
+                          height: 50.0,
+                        ),
+                        pdfLib.Text(
+                          e.answer,
+                          style: myStyle,
+                          textDirection: pdfLib.TextDirection.rtl,
+                        ),
+                      ],
+                    ),
+                  )
+                  .toList(),
+            ); // Center
+          },
+        ),
+      );
+    }
+    if (questionNum == 4) {
+      final String dir = (await getApplicationDocumentsDirectory()).path;
+      print(':::::::::::' + dir);
+      final String path = '$dir/hammemResult.pdf';
+      final File file = File(path);
+      await file.writeAsBytes(pdf.save()).whenComplete(
+            () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PdfViewerPage(
+                  path: path,
+                ),
+              ),
+            ),
+          );
+      pdfPath = path;
+    }
   }
 
-  Future<PdfImage> pdfImageFromImage(
-      {@required PdfDocument pdf, @required ByteData image}) async {
+  Future<PdfImage> pdfImageFromImage({
+    @required PdfDocument pdf,
+    @required ByteData image,
+  }) async {
     final ByteData bytes = image;
 
     return PdfImage(
@@ -141,12 +198,22 @@ class QuestionProvider extends ChangeNotifier {
   }
 }
 
-class PdfModel {
+class PdfImageModel {
   String question;
   PdfImage image;
 
-  PdfModel({
+  PdfImageModel({
     this.question,
     this.image,
+  });
+}
+
+class PdfTextModel {
+  String question;
+  String answer;
+
+  PdfTextModel({
+    this.question,
+    this.answer,
   });
 }

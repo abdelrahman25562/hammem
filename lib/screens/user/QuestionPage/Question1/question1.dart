@@ -84,7 +84,7 @@ class _Question1State extends State<Question1> {
                 itemCount: data.length,
                 itemBuilder: (context, index) {
                   return Rating(
-                    questionPageNumber: 1,
+                    questionPageNumber: 0,
                     title: data[index],
                   );
                 },

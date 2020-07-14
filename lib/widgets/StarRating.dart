@@ -95,7 +95,7 @@ class _RatingState extends State<Rating> {
                     data.addAnswer(
                       element: QuestionModel(
                         id: widget.questionPageNumber,
-                        answer: image + '!$rating / 5',
+                        answer: image,
                         question: widget.title,
                         questionType: QuestionType.Image,
                       ),
