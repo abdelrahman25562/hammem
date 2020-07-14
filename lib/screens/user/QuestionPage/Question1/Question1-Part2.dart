@@ -39,91 +39,93 @@ class _Qpart1State extends State<Qpart1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: ListView(children: <Widget>[
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-        ],
-      ),
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            'الاستبيان',
-            style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
-          )
-        ],
-      ),
-      Row(
-        textDirection: TextDirection.rtl,
-        children: <Widget>[
-          SizedBox(
-            width: 10.0,
-          ),
-          Text(
-            'اللسان والفم',
-            style: TextStyle(
-                fontSize: 18.0, color: Color(0xffFC009E), fontFamily: 'Cairo'),
-          ),
-        ],
-      ),
-      Container(
-        child: ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            return Rating(
-              questionPageNumber: 0,
-              title: data[index],
-            );
-          },
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+          body: ListView(children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
+          ],
         ),
-      ),
-      SizedBox(
-        height: 20.0,
-      ),
-      Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 1),
-          child: Builder(
-            builder: (context) => FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              onPressed: () {
-                takeScreenShot();
-                Navigator.pushNamed(context, Part3.id);
-              },
-              child: Ink(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: <Color>[Colors.blueAccent, Colors.pinkAccent]),
-                  borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                ),
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  alignment: Alignment.center,
-                  child: Text(
-                    'متابعه',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25.0,
-                        fontFamily: 'Cairo'),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'الاستبيان',
+              style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
+            )
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(
+              'اللسان والفم',
+              style: TextStyle(
+                  fontSize: 18.0, color: Color(0xffFC009E), fontFamily: 'Cairo'),
+            ),
+          ],
+        ),
+        Container(
+          child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              return Rating(
+                questionPageNumber: 0,
+                title: data[index],
+              );
+            },
+          ),
+        ),
+        SizedBox(
+          height: 20.0,
+        ),
+        Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 1),
+            child: Builder(
+              builder: (context) => FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                onPressed: () {
+                  takeScreenShot();
+                  Navigator.pushNamed(context, Part3.id);
+                },
+                child: Ink(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: <Color>[Colors.blueAccent, Colors.pinkAccent]),
+                    borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                  ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    alignment: Alignment.center,
+                    child: Text(
+                      'متابعه',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25.0,
+                          fontFamily: 'Cairo'),
+                    ),
                   ),
                 ),
               ),
-            ),
-          )),
-      SizedBox(
-        height: 55.0,
-      )
-    ]));
+            )),
+        SizedBox(
+          height: 55.0,
+        )
+      ])),
+    );
   }
 
   takeScreenShot() async {
