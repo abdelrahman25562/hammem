@@ -137,7 +137,7 @@ class _Part3State extends State<Part3> {
                       width: MediaQuery.of(context).size.width * 0.4,
                       alignment: Alignment.center,
                       child: Text(
-                        'Question2',
+                        'متابعه',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 25.0,

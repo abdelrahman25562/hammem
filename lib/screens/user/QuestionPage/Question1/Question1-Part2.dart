@@ -110,7 +110,7 @@ class _Qpart1State extends State<Qpart1> {
                   width: MediaQuery.of(context).size.width * 0.3,
                   alignment: Alignment.center,
                   child: Text(
-                    'Part2',
+                    'متابعه',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25.0,

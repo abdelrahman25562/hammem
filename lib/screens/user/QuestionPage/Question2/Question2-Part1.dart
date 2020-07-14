@@ -318,7 +318,7 @@ class _Q2Part1State extends State<Q2Part1> {
                         width: MediaQuery.of(context).size.width * 0.5,
                         alignment: Alignment.center,
                         child: Text(
-                          'Question3',
+                          'متابعه',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 25.0,

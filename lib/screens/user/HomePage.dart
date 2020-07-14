@@ -87,7 +87,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             icon: Icon(Icons.exit_to_app,color: Colors.black,size: 35,),
             onPressed: (){
               _auth.signOut();
-              Navigator.pushNamed(context, LoginScreen.id);
             }
         ),
       ),

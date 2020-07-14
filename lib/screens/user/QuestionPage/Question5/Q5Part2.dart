@@ -144,7 +144,7 @@ class _Q5P2State extends State<Q5P2> {
                   width: MediaQuery.of(context).size.width * 0.3,
                   alignment: Alignment.center,
                   child: Text(
-                    'Part2',
+                    'متابعه',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25.0,

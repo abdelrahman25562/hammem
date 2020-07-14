@@ -113,7 +113,7 @@ class _SignUpState extends State<SignUp> {
                                   final authresult = await _auth.signUp(
                                       _email, _password, _name, _country);
                                   modehub.chageisloading(false);
-                                  Navigator.pushNamed(context, HomePage.id);
+                                  Navigator.pushReplacementNamed(context, HomePage.id);
                                 } on PlatformException catch (e) {
                                   modehub.chageisloading(false);
                                   Scaffold.of(context).showSnackBar(
