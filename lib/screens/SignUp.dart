@@ -4,6 +4,7 @@ import 'package:hammem/provider/modelhub.dart';
 import 'package:hammem/services/auth.dart';
 import 'package:hammem/widgets/Custom_detector.dart';
 import 'package:hammem/widgets/cutsom_logo.dart';
+import 'package:hammem/widgets/dropDown.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 
@@ -19,9 +20,17 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  String _email, _password, _name, _country;
-  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  String _email, _password, _name,
+      _country='الدوله';
+  final GlobalKey<FormState> _globalKeySignUp = GlobalKey<FormState>();
   final _auth = Auth();
+  void onSavedCountry(value) {
+    setState(() {
+      _country = value;
+    });
+    FocusScope.of(context).requestFocus(new FocusNode());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -32,7 +41,7 @@ class _SignUpState extends State<SignUp> {
                 inAsyncCall:
                 Provider.of<Mpdalhub>(context, listen: false).isloading,
                 child: Form(
-                  key: _globalKey,
+                  key: _globalKeySignUp,
                   child: ListView(
                     children: <Widget>[
                       Padding(
@@ -56,12 +65,16 @@ class _SignUpState extends State<SignUp> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * .01,
                       ),
-                      CustomTextField(
-                        onClick: (value) {
-                          _country = value;
-                        },
-                        hint: 'البلد',
-                        color:Colors.black,
+                      DropDownFormFieldWidget(
+                        hintText: _country,
+                        onChanged: onSavedCountry,
+                        listElements: [
+                          'مصر',
+                          'الكويت',
+                          'السعوديه',
+                          'الإمارات',
+                          'دوله غير عربيه'
+                        ],
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * .01,
@@ -94,8 +107,8 @@ class _SignUpState extends State<SignUp> {
                               final modehub =
                               Provider.of<Mpdalhub>(context, listen: false);
                               modehub.chageisloading(true);
-                              if (_globalKey.currentState.validate()) {
-                                _globalKey.currentState.save();
+                              if (_globalKeySignUp.currentState.validate()) {
+                                _globalKeySignUp.currentState.save();
                                 try {
                                   final authresult = await _auth.signUp(
                                       _email, _password, _name, _country);
@@ -148,10 +161,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginScreen()));
+                              Navigator.pushNamed(context, LoginScreen.id);
                             },
                             child: Text(
                               ' تسجيل دخول',

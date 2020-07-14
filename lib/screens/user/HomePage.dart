@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:hammem/screens/user/Info.dart';
 import 'package:hammem/screens/user/MoreInfo.dart';
 import 'package:hammem/screens/user/QuestionPage/questionPage.dart';
+import 'package:hammem/services/auth.dart';
 import 'package:hammem/widgets/Custom_button.dart';
+
+import '../login.dart';
 
 const String testDevice = 'ca-app-pub-0053559627222209/9701685577';
 
@@ -73,10 +76,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _time.cancel();
     super.dispose();
   }
-
+  final _auth = Auth();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        leading: IconButton(
+            icon: Icon(Icons.exit_to_app,color: Colors.black,size: 35,),
+            onPressed: (){
+              _auth.signOut();
+              Navigator.pushNamed(context, LoginScreen.id);
+            }
+        ),
+      ),
       body: SafeArea(
         child: ListView(
           children: <Widget>[
@@ -84,7 +98,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               padding: const EdgeInsets.only(
                 right: 18.0,
                 left: 18.0,
-                top: 8.0,
               ),
               child: Container(
                 decoration:

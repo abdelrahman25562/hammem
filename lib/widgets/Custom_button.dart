@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 //=================button_home_page==================//
@@ -15,12 +16,14 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        right: 80.0,
-        left: 80.0,
+        right: 60.0,
+        left: 60.0,
       ),
       child: FlatButton(
         onPressed: onClick,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           textDirection: TextDirection.rtl,
           children: <Widget>[
             Image.asset(
