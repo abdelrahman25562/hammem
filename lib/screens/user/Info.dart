@@ -156,15 +156,13 @@ class _InfoState extends State<Info> {
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Column(
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 6.0),
                         child: Container(
-                          width: MediaQuery.of(context).size.width*0.95,
+                          width: MediaQuery.of(context).size.width*0.9,
                           child: Text(
                             'الاستبيان عبارة عن أسئلة متنوعة تلخص معظم تفاصيل العلاقة الحميمة, تم حصرها بالاستعانة بمراجع علمية معتمدة.',
                             style: TextStyle(fontFamily: 'Cairo'),
@@ -174,7 +172,7 @@ class _InfoState extends State<Info> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 6.0),
                         child: Container(
-                          width: MediaQuery.of(context).size.width*0.95,
+                          width: MediaQuery.of(context).size.width*0.9,
                           child: Text(
                             'من خلال الإجابة على هذه الأسئلة, فإن كل طرف سيكون تقرير يصف بدقة (الشخصية الجنسية) الخاصة به, والتي تصف ميوله وتطلعاته تجاه كافة تفاصيل العلاقة الحميمة.',
                             style: TextStyle(fontFamily: 'Cairo'),
@@ -204,7 +202,7 @@ class _InfoState extends State<Info> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 6.0),
                         child: Container(
-                          width: MediaQuery.of(context).size.width*0.95,
+                          width: MediaQuery.of(context).size.width*0.9,
                           child: Text(
                             'عند الضغط عليها يمكن للمستخدم استيضاح ما عجز عن فهمه من تفاصيل الممارسات. وهي فرصة جيدة ليجرب الزوجين ما استجد بالنسبة لهم من ممارسات جديدة عليهم, واستكشاف عوالم جديدة في علاقتهم الحميمة.',
                             style: TextStyle(fontFamily: 'Cairo'),
@@ -239,7 +237,7 @@ class _InfoState extends State<Info> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 6.0),
                             child: Container(
-                              width: MediaQuery.of(context).size.width*0.9,
+                              width: MediaQuery.of(context).size.width*0.8,
                               child: Text(
                                 'حقوق النشر وجميع محتويات هذا الاستبيان محمية بموجب المنظمة الدولية لحماية الملكية الفكرية رقم: NP20911',
                                 style: TextStyle(fontFamily: 'Cairo',fontSize: 12.0),

@@ -16,6 +16,9 @@ class Auth {
         email: email, password: password);
     return authResult;
   }
+  Future<void> signOut() async {
+    return _auth.signOut();
+  }
 
   Future<FirebaseUser> getUser() async {
     return await _auth.currentUser();

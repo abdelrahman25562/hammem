@@ -47,6 +47,7 @@ dependencies:
   share: ^0.6.4+3
   esys_flutter_share: ^1.0.2
   printing: ^3.5.0
+  device_preview: ^0.4.7
 
   flutter:
     sdk: flutter
