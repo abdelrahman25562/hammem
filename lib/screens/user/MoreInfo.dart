@@ -312,6 +312,15 @@ class _MoreState extends State<More> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('ثقف نفسك',style: TextStyle(color: Colors.black),),
+        centerTitle: true,
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        leading: IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: (){
+          Navigator.pop(context);
+        }),
+      ),
       body: Center(child: _processing ? _getProgressBar() : _getListView()),
       floatingActionButton: FloatingActionButton(
           child: _processing
