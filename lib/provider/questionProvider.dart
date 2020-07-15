@@ -11,6 +11,7 @@ import 'package:pdf/widgets.dart' as pdfLib;
 
 class QuestionProvider extends ChangeNotifier {
   String pdfPath = '';
+  List<File> images = new List<File>();
   List<QuestionModel> questionsAnswers = [];
   final pdfLib.Document pdf = pdfLib.Document(deflate: zlib.encode);
 
@@ -28,12 +29,13 @@ class QuestionProvider extends ChangeNotifier {
           !questionsAnswers[index].answer.contains(element.answer)) {
         questionsAnswers[index].answer =
             questionsAnswers[index].answer + '    ,\n    ' + element.answer;
-        print(':::::' + questionsAnswers[index].answer);
       } else {
         questionsAnswers[index].answer = element.answer;
+        print(':::::' + questionsAnswers[index].answer);
       }
     } else {
       questionsAnswers.add(element);
+      print(':::::' + element.answer);
     }
 
     notifyListeners();
@@ -72,17 +74,18 @@ class QuestionProvider extends ChangeNotifier {
         ),
       );
     }
-    if (type == QuestionType.Image) {
+    if (type == QuestionType.Image && questionNum != 3) {
       questionsAnswers.forEach((element) async {
         if (element.id == questionNum) {
           final PdfImage image = PdfImage.file(
             pdf.document,
             bytes: (await rootBundle.load(
-              element.answer.split('!')[0],
+              element.answer,
             ))
                 .buffer
                 .asUint8List(),
           );
+          print('name:::::**' + image.name);
           answerImagedData.add(
             PdfImageModel(
               question: element.question,
@@ -175,6 +178,7 @@ class QuestionProvider extends ChangeNotifier {
               MaterialPageRoute(
                 builder: (context) => PdfViewerPage(
                   path: path,
+                  images: images,
                 ),
               ),
             ),
