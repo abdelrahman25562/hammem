@@ -115,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             onPressed: () {
-                              Navigator.pushNamed(context, SignUp.id);
+                              Navigator.pushReplacementNamed(context, SignUp.id);
                             },
                             child: Ink(
                               decoration: const BoxDecoration(

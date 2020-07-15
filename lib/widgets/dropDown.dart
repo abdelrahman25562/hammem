@@ -34,7 +34,7 @@ class _DropDownFormFieldWidgetState extends State<DropDownFormFieldWidget> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 10.0,
-                    vertical: 6.0,
+                    vertical: 10.0,
                   ),
                   filled: true,
                   fillColor: Colors.black12,

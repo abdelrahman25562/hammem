@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:hammem/provider/Admin.dart';
 import 'package:hammem/provider/modelhub.dart';
@@ -28,7 +29,11 @@ import 'package:hammem/screens/user/ShowResult.dart';
 import 'package:hammem/splash.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      DevicePreview(
+        builder: (context) => MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   @override
@@ -47,7 +52,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-//        builder: DevicePreview.appBuilder,
+        builder: DevicePreview.appBuilder,
         title: "حميم",
         color: Colors.grey,
         debugShowMaterialGrid: false,
@@ -56,7 +61,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: Splash.id,
+        initialRoute: Final.id,
         routes: {
           LoginScreen.id: (context) => LoginScreen(),
           SignUp.id: (context) => SignUp(),

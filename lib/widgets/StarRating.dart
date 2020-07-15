@@ -73,6 +73,8 @@ class _RatingState extends State<Rating> {
         ),
         child: Row(
           children: <Widget>[
+            Txt(widget.title),
+            Spacer(),
             StarRating(
                 rating: rating,
                 onRatingChanged: (rating) {
@@ -102,8 +104,6 @@ class _RatingState extends State<Rating> {
                     );
                   });
                 }),
-            Spacer(),
-            Txt(widget.title)
           ],
         ),
       ),
