@@ -28,12 +28,13 @@ class QuestionProvider extends ChangeNotifier {
           !questionsAnswers[index].answer.contains(element.answer)) {
         questionsAnswers[index].answer =
             questionsAnswers[index].answer + '    ,\n    ' + element.answer;
-        print(':::::' + questionsAnswers[index].answer);
       } else {
         questionsAnswers[index].answer = element.answer;
+        print(':::::' + questionsAnswers[index].answer);
       }
     } else {
       questionsAnswers.add(element);
+      print(':::::' + element.answer);
     }
 
     notifyListeners();
@@ -165,7 +166,7 @@ class QuestionProvider extends ChangeNotifier {
         ),
       );
     }
-    if (questionNum == 4) {
+    if (questionNum == 3) {
       final String dir = (await getApplicationDocumentsDirectory()).path;
       print(':::::::::::' + dir);
       final String path = '$dir/hammemResult.pdf';

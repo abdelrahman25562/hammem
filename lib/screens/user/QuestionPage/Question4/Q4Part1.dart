@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hammem/screens/user/QuestionPage/Question5/Question5.dart';
+import 'package:hammem/Model/questionModel.dart';
+import 'package:hammem/provider/questionProvider.dart';
+import 'package:hammem/screens/user/QuestionPage/Question4/photoEditing.dart';
+import 'package:provider/provider.dart';
 
 class Q4Part1 extends StatefulWidget {
   static String id = 'Question4-Part1';
@@ -130,7 +133,10 @@ class _Q4Part1State extends State<Q4Part1> {
             textDirection: TextDirection.rtl,
             children: <Widget>[
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.048,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width * 0.048,
               ),
               Text(
                 'من خلال سحب علامات الصح والخطأ الموجوده بالصوره',
@@ -138,122 +144,127 @@ class _Q4Part1State extends State<Q4Part1> {
               ),
             ],
           ),
-          Row(children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height / 2,
-              child: Stack(
-                children: <Widget>[
-                  Image.asset(
-                    'assets/images/112.png',
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 2,
-                  ),
-                  Positioned(
-                    left: position.dx + 5,
-                    top: position.dy - height + 25.0,
-                    child: Draggable(
-                      child: Container(
-                        width: 15,
-                        height: 15,
-                        child: Center(
-                          child: Center(
-                              child: Image.asset('assets/images/wrong.png')),
-                        ),
-                        color: Colors.white,
-                      ),
-                      feedback: Container(
-                        width: 15,
-                        height: 15,
-                        child: Center(
-                          child: Center(
-                              child: Image.asset('assets/images/wrong.png')),
-                        ),
-                        color: Colors.white,
-                      ),
-                      onDraggableCanceled: (Velocity velocity, Offset offset) {
-                        setState(() {
-                          position = offset;
-                          print(position);
-                        });
-                      },
-                    ),
-                  ),
-                  Positioned(
-                    left: position2.dx + 5.0,
-                    top: position2.dy - height + 25.0,
-                    child: Draggable(
-                      child: Container(
-                        width: 15,
-                        height: 15,
-                        color: Colors.white,
-                        child: Center(
-                            child: Image.asset('assets/images/wrong.png')),
-                      ),
-                      feedback: Container(
-                        width: 15,
-                        height: 15,
-                        color: Colors.white,
-                        child: Center(
-                            child: Image.asset('assets/images/wrong.png')),
-                      ),
-                      onDraggableCanceled: (Velocity velocity, Offset offset) {
-                        setState(() {
-                          position2 = offset;
-                          print(position2);
-                        });
-                      },
-                    ),
-                  ),
-                  Positioned(
-                    left: position3.dx + 5.0,
-                    top: position3.dy - height + 25.0,
-                    child: Draggable(
-                      child: Container(
-                        width: 15,
-                        height: 15,
-                        color: Colors.white,
-                        child: Center(
-                            child: Image.asset('assets/images/wrong.png')),
-                      ),
-                      feedback: Container(
-                        width: 15,
-                        height: 15,
-                        color: Colors.white,
-                        child: Center(
-                            child: Image.asset('assets/images/wrong.png')),
-                      ),
-                      onDraggableCanceled: (Velocity velocity, Offset offset) {
-                        setState(() => position3 = offset);
-                      },
-                    ),
-                  ),
-                  Positioned(
-                    left: position4.dx + 5.0,
-                    top: position4.dy - height + 25.0,
-                    child: Draggable(
-                      child: Container(
-                        width: 15,
-                        height: 15,
-                        color: Colors.white,
-                        child: Center(
-                            child: Image.asset('assets/images/wrong.png')),
-                      ),
-                      feedback: Container(
-                        width: 15,
-                        height: 15,
-                        color: Colors.white,
-                        child: Center(
-                            child: Image.asset('assets/images/wrong.png')),
-                      ),
-                      onDraggableCanceled: (Velocity velocity, Offset offset) {
-                        setState(() => position4 = offset);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ]),
+//          Row(children: <Widget>[
+//            Container(
+//              height: MediaQuery.of(context).size.height / 2,
+//              child: Stack(
+//                children: <Widget>[
+//                  Image.asset(
+//                    'assets/images/112.png',
+//                    width: MediaQuery.of(context).size.width,
+//                    height: MediaQuery.of(context).size.height / 2,
+//                  ),
+//                  Positioned(
+//                    left: position.dx + 5,
+//                    top: position.dy - height + 25.0,
+//                    child: Draggable(
+//                      child: Container(
+//                        width: 15,
+//                        height: 15,
+//                        child: Center(
+//                          child: Center(
+//                              child: Image.asset('assets/images/wrong.png')),
+//                        ),
+//                        color: Colors.white,
+//                      ),
+//                      feedback: Container(
+//                        width: 15,
+//                        height: 15,
+//                        child: Center(
+//                          child: Center(
+//                              child: Image.asset('assets/images/wrong.png')),
+//                        ),
+//                        color: Colors.white,
+//                      ),
+//                      onDraggableCanceled: (Velocity velocity, Offset offset) {
+//                        setState(() {
+//                          position = offset;
+//                          print(position);
+//                        });
+//                      },
+//                    ),
+//                  ),
+//                  Positioned(
+//                    left: position2.dx + 5.0,
+//                    top: position2.dy - height + 25.0,
+//                    child: Draggable(
+//                      child: Container(
+//                        width: 15,
+//                        height: 15,
+//                        color: Colors.white,
+//                        child: Center(
+//                            child: Image.asset('assets/images/wrong.png')),
+//                      ),
+//                      feedback: Container(
+//                        width: 15,
+//                        height: 15,
+//                        color: Colors.white,
+//                        child: Center(
+//                            child: Image.asset('assets/images/wrong.png')),
+//                      ),
+//                      onDraggableCanceled: (Velocity velocity, Offset offset) {
+//                        setState(() {
+//                          position2 = offset;
+//                          print(position2);
+//                        });
+//                      },
+//                    ),
+//                  ),
+//                  Positioned(
+//                    left: position3.dx + 5.0,
+//                    top: position3.dy - height + 25.0,
+//                    child: Draggable(
+//                      child: Container(
+//                        width: 15,
+//                        height: 15,
+//                        color: Colors.white,
+//                        child: Center(
+//                            child: Image.asset('assets/images/wrong.png')),
+//                      ),
+//                      feedback: Container(
+//                        width: 15,
+//                        height: 15,
+//                        color: Colors.white,
+//                        child: Center(
+//                            child: Image.asset('assets/images/wrong.png')),
+//                      ),
+//                      onDraggableCanceled: (Velocity velocity, Offset offset) {
+//                        setState(() => position3 = offset);
+//                      },
+//                    ),
+//                  ),
+//                  Positioned(
+//                    left: position4.dx + 5.0,
+//                    top: position4.dy - height + 25.0,
+//                    child: Draggable(
+//                      child: Container(
+//                        width: 15,
+//                        height: 15,
+//                        color: Colors.white,
+//                        child: Center(
+//                            child: Image.asset('assets/images/wrong.png')),
+//                      ),
+//                      feedback: Container(
+//                        width: 15,
+//                        height: 15,
+//                        color: Colors.white,
+//                        child: Center(
+//                            child: Image.asset('assets/images/wrong.png')),
+//                      ),
+//                      onDraggableCanceled: (Velocity velocity, Offset offset) {
+//                        setState(() => position4 = offset);
+//                      },
+//                    ),
+//                  ),
+//                ],
+//              ),
+//            ),
+//
+//          ]),
+          PhotoEditing(
+            imagePath: 'assets/images/112.png',
+            question: 'المناطق التى يحبها الرجال عند النساء',
+          ),
           SizedBox(
             height: 20.0,
           ),
@@ -261,7 +272,10 @@ class _Q4Part1State extends State<Q4Part1> {
             textDirection: TextDirection.rtl,
             children: <Widget>[
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.048,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width * 0.048,
               ),
               Text(
                 'المناطق التى تحبها النساء عند الرجال',
@@ -285,7 +299,10 @@ class _Q4Part1State extends State<Q4Part1> {
             textDirection: TextDirection.rtl,
             children: <Widget>[
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.048,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width * 0.048,
               ),
               Text(
                 'من خلال سحب علامات الصح والخطأ الموجوده بالصوره',
@@ -293,195 +310,68 @@ class _Q4Part1State extends State<Q4Part1> {
               ),
             ],
           ),
-          Row(children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Image.asset(
-                  'assets/images/man.png',
-                  width: MediaQuery.of(context).size.width,
-                ),
-                Positioned(
-                  left: position7.dx + 5,
-                  top: position7.dy - height + 55,
-                  child: Draggable(
-                    child: Container(
-                      width: 15,
-                      height: 15,
-                      child: Center(
-                        child: Center(
-                            child: Image.asset('assets/images/wrong.png')),
-                      ),
-                      color: Colors.white,
-                    ),
-                    feedback: Container(
-                      width: 15,
-                      height: 15,
-                      child: Center(
-                        child: Center(
-                            child: Image.asset('assets/images/wrong.png')),
-                      ),
-                      color: Colors.white,
-                    ),
-                    onDraggableCanceled: (Velocity velocity, Offset offset) {
-                      setState(() => position7 = offset);
-                    },
-                  ),
-                ),
-                Positioned(
-                  left: position8.dx + 5.0,
-                  top: position8.dy - height + 55.0,
-                  child: Draggable(
-                    child: Container(
-                      width: 15,
-                      height: 15,
-                      color: Colors.white,
-                      child:
-                          Center(child: Image.asset('assets/images/wrong.png')),
-                    ),
-                    feedback: Container(
-                      width: 15,
-                      height: 15,
-                      color: Colors.white,
-                      child:
-                          Center(child: Image.asset('assets/images/wrong.png')),
-                    ),
-                    onDraggableCanceled: (Velocity velocity, Offset offset) {
-                      setState(() => position8 = offset);
-                    },
-                  ),
-                ),
-                Positioned(
-                  left: position9.dx + 5.0,
-                  top: position9.dy - height + 55.0,
-                  child: Draggable(
-                    child: Container(
-                      width: 15,
-                      height: 15,
-                      color: Colors.white,
-                      child:
-                          Center(child: Image.asset('assets/images/wrong.png')),
-                    ),
-                    feedback: Container(
-                      width: 15,
-                      height: 15,
-                      color: Colors.white,
-                      child:
-                          Center(child: Image.asset('assets/images/wrong.png')),
-                    ),
-                    onDraggableCanceled: (Velocity velocity, Offset offset) {
-                      setState(() => position9 = offset);
-                    },
-                  ),
-                ),
-                Positioned(
-                  left: position10.dx + 5.0,
-                  top: position10.dy - height + 55.0,
-                  child: Draggable(
-                    child: Container(
-                      width: 15,
-                      height: 15,
-                      color: Colors.white,
-                      child:
-                          Center(child: Image.asset('assets/images/wrong.png')),
-                    ),
-                    feedback: Container(
-                      width: 15,
-                      height: 15,
-                      color: Colors.white,
-                      child:
-                          Center(child: Image.asset('assets/images/wrong.png')),
-                    ),
-                    onDragEnd: (x) {},
-                    onDraggableCanceled: (Velocity velocity, Offset offset) {
-                      setState(() => position10 = offset);
-                    },
-                  ),
-                ),
-                Positioned(
-                  left: position11.dx + 5.0,
-                  top: position11.dy - height + 55.0,
-                  child: Draggable(
-                    child: Container(
-                      width: 15,
-                      height: 15,
-                      color: Colors.white,
-                      child:
-                          Center(child: Image.asset('assets/images/wrong.png')),
-                    ),
-                    feedback: Container(
-                      width: 15,
-                      height: 15,
-                      color: Colors.white,
-                      child:
-                          Center(child: Image.asset('assets/images/wrong.png')),
-                    ),
-                    onDraggableCanceled: (Velocity velocity, Offset offset) {
-                      setState(() => position11 = offset);
-                    },
-                  ),
-                ),
-                Positioned(
-                  left: position12.dx + 5.0,
-                  top: position12.dy - height + 55.0,
-                  child: Draggable(
-                    child: Container(
-                      width: 15,
-                      height: 15,
-                      color: Colors.white,
-                      child:
-                          Center(child: Image.asset('assets/images/wrong.png')),
-                    ),
-                    feedback: Container(
-                      width: 15,
-                      height: 15,
-                      color: Colors.white,
-                      child:
-                          Center(child: Image.asset('assets/images/wrong.png')),
-                    ),
-                    onDraggableCanceled: (Velocity velocity, Offset offset) {
-                      setState(() => position12 = offset);
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ]),
+          PhotoEditing(
+            imagePath: 'assets/images/133.png',
+            question: 'المناطق التى تحبها النساء عند الرجال',
+          ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 4,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.2,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Builder(
-              builder: (context) => FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                onPressed: () {
-                  Navigator.pushNamed(context, Q5.id);
-                },
-                child: Ink(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        stops: [0.3, 1],
-                        colors: <Color>[Color(0xE263878C), Color(0x2FBCEF82)]),
-                    borderRadius: BorderRadius.all(Radius.circular(80.0)),
+              builder: (context) =>
+                  Consumer<QuestionProvider>(
+                    builder: (context, provider, _) =>
+                        FlatButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          onPressed: () {
+//                    Navigator.pushNamed(context, Q5.id);
+                            provider.generatePdfAndView(
+                              context: context,
+                              questionNum: 3,
+                              type: QuestionType.Text,
+                            );
+                          },
+                          child: Ink(
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  stops: [
+                                    0.3,
+                                    1
+                                  ],
+                                  colors: <Color>[
+                                    Color(0xE263878C),
+                                    Color(0x2FBCEF82)
+                                  ]),
+                              borderRadius: BorderRadius.all(Radius.circular(
+                                  80.0)),
+                            ),
+                            child: Container(
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.3,
+                              alignment: Alignment.center,
+                              child: Center(
+                                child: Text(
+                                  'بدء',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25.0,
+                                      fontFamily: 'Cairo'),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                   ),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    alignment: Alignment.center,
-                    child: Center(
-                      child: Text(
-                        'بدء',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25.0,
-                            fontFamily: 'Cairo'),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
             ),
           ),
           SizedBox(
