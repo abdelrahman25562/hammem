@@ -11,10 +11,12 @@ import 'package:path_provider/path_provider.dart';
 class PhotoEditing extends StatefulWidget {
   final String imagePath;
   final String question;
+  final int index;
 
   PhotoEditing({
     @required this.imagePath,
     @required this.question,
+    @required this.index,
   });
 
   @override
@@ -30,6 +32,7 @@ class _PhotoEditingState extends State<PhotoEditing> {
           appBarColor: Colors.blue,
           bottomBarColor: Colors.blue,
           image: _image,
+          index: widget.index,
           question: widget.question,
         );
       })).then((geteditimage) {

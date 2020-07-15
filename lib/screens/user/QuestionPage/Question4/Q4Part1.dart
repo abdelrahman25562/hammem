@@ -262,6 +262,7 @@ class _Q4Part1State extends State<Q4Part1> {
           PhotoEditing(
             imagePath: 'assets/images/112.png',
             question: 'المناطق التى يحبها الرجال عند النساء',
+            index: 0,
           ),
           SizedBox(
             height: 20.0,
@@ -270,10 +271,7 @@ class _Q4Part1State extends State<Q4Part1> {
             textDirection: TextDirection.rtl,
             children: <Widget>[
               SizedBox(
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width * 0.048,
+                width: MediaQuery.of(context).size.width * 0.048,
               ),
               Text(
                 'المناطق التى تحبها النساء عند الرجال',
@@ -311,6 +309,7 @@ class _Q4Part1State extends State<Q4Part1> {
           PhotoEditing(
             imagePath: 'assets/images/133.png',
             question: 'المناطق التى تحبها النساء عند الرجال',
+            index: 1,
           ),
           SizedBox(
             height: MediaQuery

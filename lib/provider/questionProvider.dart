@@ -11,7 +11,7 @@ import 'package:pdf/widgets.dart' as pdfLib;
 
 class QuestionProvider extends ChangeNotifier {
   String pdfPath = '';
-  List<File> images = new List<File>();
+  List<File> images = new List<File>(2);
   List<QuestionModel> questionsAnswers = [];
   final pdfLib.Document pdf = pdfLib.Document(deflate: zlib.encode);
 
@@ -143,7 +143,7 @@ class QuestionProvider extends ChangeNotifier {
               children: answerTextData
                   .map(
                     (e) => pdfLib.Column(
-                      mainAxisAlignment: pdfLib.MainAxisAlignment.start,
+                      mainAxisAlignment: pdfLib.MainAxisAlignment.end,
                       crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
                       children: [
                         pdfLib.Text(
@@ -168,7 +168,7 @@ class QuestionProvider extends ChangeNotifier {
         ),
       );
     }
-    if (questionNum == 4) {
+    if (questionNum == 10) {
       final String dir = (await getApplicationDocumentsDirectory()).path;
       print(':::::::::::' + dir);
       final String path = '$dir/hammemResult.pdf';
