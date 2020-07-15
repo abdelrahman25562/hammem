@@ -13,11 +13,14 @@ class _BrightnessSliderContainerState extends State<BrightnessSliderContainer> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData screen = MediaQuery.of(context);
     return /* Slider  */ Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Text(
-          'قصير',
-          style: TextStyle(fontSize: 12.0, fontFamily: 'Cairo'),
+          'طويل',
+          style: TextStyle(fontSize: screen.size.width>365?12:10, fontFamily: 'Cairo'),
         ),
         CupertinoSlider(
           activeColor: Colors.purpleAccent,
@@ -32,8 +35,8 @@ class _BrightnessSliderContainerState extends State<BrightnessSliderContainer> {
           },
         ),
         Text(
-          'طويل',
-          style: TextStyle(fontSize: 12.0, fontFamily: 'Cairo'),
+          'قصير',
+          style: TextStyle(fontSize: screen.size.width>365?12:10, fontFamily: 'Cairo'),
         ),
       ],
     );
