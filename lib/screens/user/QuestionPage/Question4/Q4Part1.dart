@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:hammem/Model/questionModel.dart';
 import 'package:hammem/provider/questionProvider.dart';
 import 'package:hammem/screens/user/QuestionPage/Question4/photoEditing.dart';
+import 'package:hammem/screens/user/QuestionPage/Question5/Question5.dart';
 import 'package:provider/provider.dart';
 
 class Q4Part1 extends StatefulWidget {
@@ -133,10 +134,7 @@ class _Q4Part1State extends State<Q4Part1> {
             textDirection: TextDirection.rtl,
             children: <Widget>[
               SizedBox(
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width * 0.048,
+                width: MediaQuery.of(context).size.width * 0.048,
               ),
               Text(
                 'من خلال سحب علامات الصح والخطأ الموجوده بالصوره',
@@ -330,12 +328,18 @@ class _Q4Part1State extends State<Q4Part1> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           onPressed: () {
-//                    Navigator.pushNamed(context, Q5.id);
+                            if (provider.images.length < 2) {
+                              Scaffold.of(context).hideCurrentSnackBar();
+                              Scaffold.of(context).showSnackBar(
+                                  SnackBar(content: Text(
+                                      'يجب ان تعلم الصورتين')));
+                            }
                             provider.generatePdfAndView(
                               context: context,
                               questionNum: 3,
-                              type: QuestionType.Text,
+                              type: QuestionType.Image,
                             );
+                            Navigator.pushNamed(context, Q5.id);
                           },
                           child: Ink(
                             decoration: const BoxDecoration(

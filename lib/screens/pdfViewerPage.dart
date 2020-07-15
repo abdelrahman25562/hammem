@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:esys_flutter_share/esys_flutter_share.dart';
@@ -10,16 +11,22 @@ import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
 
 class PdfViewerPage extends StatelessWidget {
   final String path;
+  final List<File> images;
 
-  const PdfViewerPage({Key key, this.path}) : super(key: key);
+  const PdfViewerPage({Key key, this.path, this.images}) : super(key: key);
 
   Future<void> _shareMixed() async {
     try {
+      final image1 = images[0];
+      final image2 = images[1];
       final ByteData bytes3 = await rootBundle.load(path);
-
+      final ByteData bytes1 = await rootBundle.load(image1.path);
+      final ByteData bytes2 = await rootBundle.load(image2.path);
       await Share.files(
         'esys images',
         {
+          '1.png': bytes1.buffer.asUint8List(),
+          '2.png': bytes2.buffer.asUint8List(),
           'hammemResult.pdf': bytes3.buffer.asUint8List(),
         },
         '*/*',
