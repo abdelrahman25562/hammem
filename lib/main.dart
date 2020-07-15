@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: Splash.id,
+        initialRoute: Final.id,
         routes: {
           LoginScreen.id: (context) => LoginScreen(),
           SignUp.id: (context) => SignUp(),
