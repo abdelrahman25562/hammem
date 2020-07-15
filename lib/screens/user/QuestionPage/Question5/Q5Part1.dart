@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hammem/Model/questionModel.dart';
+import 'package:hammem/provider/questionProvider.dart';
 import 'package:hammem/screens/user/QuestionPage/Question5/Q5Part2.dart';
 import 'package:hammem/screens/user/QuestionPage/Question5/sliderHammem.dart';
 import 'package:hammem/widgets/StarRating.dart';
+import 'package:provider/provider.dart';
 
 class Q5P1 extends StatefulWidget {
   static String id = 'Question5-Part1';
@@ -100,29 +103,36 @@ class _Q5P1State extends State<Q5P1> {
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 1),
                 child: Builder(
-                  builder: (context) => FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    onPressed: () {
-                      Navigator.pushNamed(context, Q5P2.id);
-                    },
-                    child: Ink(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(colors: <Color>[
-                          Colors.blueAccent,
-                          Colors.pinkAccent
-                        ]),
-                        borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                      ),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        alignment: Alignment.center,
-                        child: Text(
-                          'متابعه',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.0,
-                              fontFamily: 'Cairo'),
+                  builder: (context) => Consumer<QuestionProvider>(
+                    builder: (context, provider, _) => FlatButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      onPressed: () {
+                        provider.generatePdfAndView(
+                          context: context,
+                          type: QuestionType.Text,
+                          questionNum: 4,
+                        );
+                        Navigator.pushNamed(context, Q5P2.id);
+                      },
+                      child: Ink(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(colors: <Color>[
+                            Colors.blueAccent,
+                            Colors.pinkAccent
+                          ]),
+                          borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                        ),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          alignment: Alignment.center,
+                          child: Text(
+                            'متابعه',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                                fontFamily: 'Cairo'),
+                          ),
                         ),
                       ),
                     ),

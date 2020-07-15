@@ -74,6 +74,80 @@ class QuestionProvider extends ChangeNotifier {
         ),
       );
     }
+    if (questionNum == 1) {
+      final PdfImage image1 = PdfImage.file(
+        pdf.document,
+        bytes: (await rootBundle.load(
+          'assets/images/one.png',
+        ))
+            .buffer
+            .asUint8List(),
+      );
+      answerImagedData.add(
+        PdfImageModel(
+          question: 'element.question',
+          image: image1,
+        ),
+      );
+
+      final PdfImage image2 = PdfImage.file(
+        pdf.document,
+        bytes: (await rootBundle.load(
+          'assets/images/two.png',
+        ))
+            .buffer
+            .asUint8List(),
+      );
+      answerImagedData.add(
+        PdfImageModel(
+          question: 'element.question',
+          image: image2,
+        ),
+      );
+      final PdfImage image3 = PdfImage.file(
+        pdf.document,
+        bytes: (await rootBundle.load(
+          'assets/images/three.png',
+        ))
+            .buffer
+            .asUint8List(),
+      );
+      answerImagedData.add(
+        PdfImageModel(
+          question: 'element.question',
+          image: image3,
+        ),
+      );
+
+      pdf.addPage(
+        pdfLib.Page(
+          build: (pdfLib.Context context) {
+            return pdfLib.Column(
+              children: [
+                pdfLib.Expanded(
+                  child: pdfLib.Container(
+                    color: PdfColors.white,
+                    child: pdfLib.Image(image1),
+                  ),
+                ),
+                pdfLib.Expanded(
+                  child: pdfLib.Container(
+                    color: PdfColors.white,
+                    child: pdfLib.Image(image2),
+                  ),
+                ),
+                pdfLib.Expanded(
+                  child: pdfLib.Container(
+                    color: PdfColors.white,
+                    child: pdfLib.Image(image3),
+                  ),
+                ),
+              ],
+            ); // Center
+          },
+        ),
+      );
+    }
     if (type == QuestionType.Image && questionNum != 3) {
       questionsAnswers.forEach((element) async {
         if (element.id == questionNum) {
@@ -143,7 +217,7 @@ class QuestionProvider extends ChangeNotifier {
               children: answerTextData
                   .map(
                     (e) => pdfLib.Column(
-                      mainAxisAlignment: pdfLib.MainAxisAlignment.end,
+                      mainAxisAlignment: pdfLib.MainAxisAlignment.start,
                       crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
                       children: [
                         pdfLib.Text(

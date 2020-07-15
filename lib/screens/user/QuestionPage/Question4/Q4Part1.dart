@@ -295,10 +295,7 @@ class _Q4Part1State extends State<Q4Part1> {
             textDirection: TextDirection.rtl,
             children: <Widget>[
               SizedBox(
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width * 0.048,
+                width: MediaQuery.of(context).size.width * 0.048,
               ),
               Text(
                 'من خلال سحب علامات الصح والخطأ الموجوده بالصوره',
@@ -353,8 +350,8 @@ class _Q4Part1State extends State<Q4Part1> {
                                     Color(0xE263878C),
                                     Color(0x2FBCEF82)
                                   ]),
-                              borderRadius: BorderRadius.all(Radius.circular(
-                                  80.0)),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(80.0)),
                             ),
                             child: Container(
                               width: MediaQuery
