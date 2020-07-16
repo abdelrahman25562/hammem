@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 class DialogStructure extends StatelessWidget {
   final Widget content;
   final Widget img;
+  final String link;
   DialogStructure({
     this.content,
-    this.img
+    this.img,
+    this.link,
   });
 
   @override
