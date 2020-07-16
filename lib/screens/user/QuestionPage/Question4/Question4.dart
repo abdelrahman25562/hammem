@@ -51,62 +51,27 @@ class _Question4State extends State<Question4> {
                   )
                 ],
               ),
-              Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'خارطة المتعة',
-                      style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
-                    )
-                  ]),
+
               SizedBox(
                 height: 15.0,
               ),
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'ضع علامه',
-                        style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'سوف تعرض عليك صور للاماكن المثيرة والغير مثيرة بالنسبة لك عند النساء او بالنسبة لكي عند الرجال',
+                          style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
+                        ),
                       ),
-                      Icon(
-                        Icons.done,
-                        color: Colors.green,
-                      ),
-                    ],
-                  ),
-                  Text(
-                    'علي مناطق المداعبه المفضله لديك',
-                    style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'وعلامه',
-                        style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
-                      ),
-                      Text(
-                        'X',
-                        style: TextStyle(
-                            fontSize: 18.0,
-                            fontFamily: 'Cairo',
-                            color: Colors.red),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    'علي المناطق التي لا تفضل ',
-                    style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
-                  ),
-                  Text(
-                    'المداعبه لك ولشريكك ',
-                    style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'تقوم بالتعليم عن طريق رسم علامة بنفسك او اختيار ايموشن يعبر عن المنطقة',
+                      style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo',color: Color(0xffFC009E)),
+                    ),
                   ),
                 ],
               ),

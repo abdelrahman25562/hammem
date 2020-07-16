@@ -69,19 +69,45 @@ class _Q4Part1State extends State<Q4Part1> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(right:8.0,left: 8.0),
+              padding: const EdgeInsets.only(right:8.0),
               child: Container(
                 child: Text(
-                  ' قم باختيار العلامة التى تريد استخدامها للتعلي قم باختيار العلامة التى تريد استخدامها للتعلي قم باختيار العلامة التى تريد استخدامها للتعليم',
+                  'قم باختيار العلامة التي تريد استخدامها للتعليم علي مناطق المداعبة التي تفضلها والمناطق التي لاتفضلها علي حسب اختيارك للعلامة',
                   style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right:8.0),
+              child: Container(
+                child: Text(
+                  'سواء كانت العلامة رسمة او ايموشن',
+                  style: TextStyle(fontSize: 14.0, fontFamily: 'Cairo',color: Colors.grey),
                 ),
               ),
             ),
 
 
 SizedBox(height: 40.0,),
+            Padding(
+              padding: const EdgeInsets.only(right:8.0),
+              child: Container(
+                child: Text(
+                  'المناطق التي يحبها الرجال عند النساء',
+                  style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
+                ),
+              ),
+            ),
 
-
+            Padding(
+              padding: const EdgeInsets.only(right:8.0),
+              child: Container(
+                child: Text(
+                  'قم باختيار علامتك سواء كانت (المفضلة / الغير مفضلة) وقم بالضغط علي الصورة التالية والتعليم علي المناطق',
+                  style: TextStyle(fontSize: 14.0, fontFamily: 'Cairo',color: Colors.grey),
+                ),
+              ),
+            ),
 
 //          Row(children: <Widget>[
 //            Container(
@@ -209,8 +235,17 @@ SizedBox(height: 40.0,),
               padding: const EdgeInsets.only(right:8.0,left: 8.0),
               child: Container(
                 child: Text(
-                  ' قم باختيار العلامة التى تريد استخدامها للتعلي قم باختيار العلامة التى تريد استخدامها للتعلي قم باختيار العلامة التى تريد استخدامها للتعليم',
+                  'المناطق التي تحبها النساء عند الرجال',
                   style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right:8.0,left: 8.0),
+              child: Container(
+                child: Text(
+                  'قم باختيار علامتك سواء كانت (المفضلة / الغير مفضلة) وقم بالضغط علي الصورة التالية والتعليم علي المناطق',
+                  style: TextStyle(fontSize: 14.0, fontFamily: 'Cairo',color: Colors.grey),
                 ),
               ),
             ),
