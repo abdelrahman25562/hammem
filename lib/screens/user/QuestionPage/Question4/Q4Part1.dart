@@ -314,61 +314,54 @@ class _Q4Part1State extends State<Q4Part1> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Builder(
-              builder: (context) =>
-                  Consumer<QuestionProvider>(
-                    builder: (context, provider, _) =>
-                        FlatButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          onPressed: () {
-                            if (provider.images.length < 2) {
-                              Scaffold.of(context).hideCurrentSnackBar();
-                              Scaffold.of(context).showSnackBar(
-                                  SnackBar(content: Text(
-                                      'يجب ان تعلم الصورتين')));
-                            }
-                            provider.generatePdfAndView(
-                              context: context,
-                              questionNum: 3,
-                              type: QuestionType.Image,
-                            );
-                            Navigator.pushNamed(context, Q5.id);
-                          },
-                          child: Ink(
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  stops: [
-                                    0.3,
-                                    1
-                                  ],
-                                  colors: <Color>[
-                                    Color(0xE263878C),
-                                    Color(0x2FBCEF82)
-                                  ]),
-                              borderRadius: BorderRadius.all(Radius.circular(
-                                  80.0)),
-                            ),
-                            child: Container(
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.3,
-                              alignment: Alignment.center,
-                              child: Center(
-                                child: Text(
-                                  'بدء',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 25.0,
-                                      fontFamily: 'Cairo'),
-                                ),
-                              ),
-                            ),
-                          ),
+              builder: (context) => Consumer<QuestionProvider>(
+                builder: (context, provider, _) => FlatButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  onPressed: () {
+                    if (provider.images.length < 2) {
+                      Scaffold.of(context).hideCurrentSnackBar();
+                      Scaffold.of(context).showSnackBar(
+                          SnackBar(content: Text('يجب ان تعلم الصورتين')));
+                    }
+                    provider.generatePdfAndView(
+                      context: context,
+                      questionNum: 3,
+                      type: QuestionType.Image,
+                    );
+                    Navigator.pushNamed(context, Q5.id);
+                  },
+                  child: Ink(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          stops: [
+                            0.3,
+                            1
+                          ],
+                          colors: <Color>[
+                            Color(0xE263878C),
+                            Color(0x2FBCEF82)
+                          ]),
+                      borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                    ),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      alignment: Alignment.center,
+                      child: Center(
+                        child: Text(
+                          'بدء',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25.0,
+                              fontFamily: 'Cairo'),
                         ),
+                      ),
+                    ),
                   ),
+                ),
+              ),
             ),
           ),
           SizedBox(
