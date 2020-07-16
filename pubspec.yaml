@@ -74,6 +74,15 @@ flutter:
         - asset: assets/fonts/Cairo-Black.ttf
         - asset: assets/fonts/Cairo-ExtraLight.ttf
         - asset: assets/fonts/Cairo-Regular.ttf
+
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Bold.ttf
+
+    - family: Hanimation
+      fonts:
+        - asset: assets/fonts/hanimation-regular.ttf
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

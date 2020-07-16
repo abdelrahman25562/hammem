@@ -25,8 +25,7 @@ class QuestionProvider extends ChangeNotifier {
     if (exist) {
       int index = questionsAnswers
           .indexWhere((item) => item.question == element.question);
-      if (questionsAnswers[index].id == 1 &&
-          !questionsAnswers[index].answer.contains(element.answer)) {
+      if (questionsAnswers[index].id == 1) {
         questionsAnswers[index].answer =
             questionsAnswers[index].answer + '    ,\n    ' + element.answer;
       } else {
@@ -48,16 +47,16 @@ class QuestionProvider extends ChangeNotifier {
   }) async {
     List<PdfImageModel> answerImagedData = [];
     List<PdfTextModel> answerTextData = [];
-    var data = await rootBundle.load("assets/fonts/Cairo-Regular.ttf");
+    var data = await rootBundle.load("assets/fonts/hanimation-regular.ttf");
     var myFont = pdfLib.Font.ttf(data);
     var titleStyle = pdfLib.TextStyle(
       font: myFont,
-      fontSize: 28.0,
+      fontSize: 24.0,
       wordSpacing: 5.0,
     );
     var myStyle = pdfLib.TextStyle(
       font: myFont,
-      fontSize: 16.0,
+      fontSize: 12.0,
     );
     if (questionNum == 0) {
       pdf.addPage(
@@ -179,8 +178,8 @@ class QuestionProvider extends ChangeNotifier {
                       crossAxisAlignment: pdfLib.CrossAxisAlignment.center,
                       children: [
                         pdfLib.Container(
-                          width: 100,
-                          height: 25,
+                          width: 90,
+                          height: 20,
                           color: PdfColors.white,
                           child: pdfLib.Image(e.image),
                         ),
@@ -216,25 +215,45 @@ class QuestionProvider extends ChangeNotifier {
             return pdfLib.Column(
               children: answerTextData
                   .map(
-                    (e) => pdfLib.Column(
-                      mainAxisAlignment: pdfLib.MainAxisAlignment.start,
-                      crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
-                      children: [
-                        pdfLib.Text(
-                          e.question,
-                          style: titleStyle,
-                          textDirection: pdfLib.TextDirection.rtl,
-                        ),
-                        pdfLib.SizedBox(
-                          height: 50.0,
-                        ),
-                        pdfLib.Text(
-                          e.answer,
-                          style: myStyle,
-                          textDirection: pdfLib.TextDirection.rtl,
-                        ),
-                      ],
-                    ),
+                    (e) => questionNum == 4
+                        ? pdfLib.Row(
+                            mainAxisAlignment: pdfLib.MainAxisAlignment.start,
+                            crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
+                            children: [
+                              pdfLib.Text(
+                                e.question,
+                                style: titleStyle,
+                                textDirection: pdfLib.TextDirection.rtl,
+                              ),
+                              pdfLib.SizedBox(
+                                width: 20.0,
+                              ),
+                              pdfLib.Text(
+                                e.answer,
+                                style: myStyle,
+                                textDirection: pdfLib.TextDirection.rtl,
+                              ),
+                            ],
+                          )
+                        : pdfLib.Column(
+                            mainAxisAlignment: pdfLib.MainAxisAlignment.start,
+                            crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
+                            children: [
+                              pdfLib.Text(
+                                e.question,
+                                style: titleStyle,
+                                textDirection: pdfLib.TextDirection.rtl,
+                              ),
+                              pdfLib.SizedBox(
+                                height: 50.0,
+                              ),
+                              pdfLib.Text(
+                                e.answer,
+                                style: myStyle,
+                                textDirection: pdfLib.TextDirection.rtl,
+                              ),
+                            ],
+                          ),
                   )
                   .toList(),
             ); // Center

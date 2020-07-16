@@ -309,10 +309,7 @@ class _Q4Part1State extends State<Q4Part1> {
             index: 1,
           ),
           SizedBox(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height * 0.2,
+            height: MediaQuery.of(context).size.height * 0.2,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -350,8 +347,8 @@ class _Q4Part1State extends State<Q4Part1> {
                                     Color(0xE263878C),
                                     Color(0x2FBCEF82)
                                   ]),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(80.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(
+                                  80.0)),
                             ),
                             child: Container(
                               width: MediaQuery

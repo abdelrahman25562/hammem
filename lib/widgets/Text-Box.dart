@@ -74,10 +74,7 @@ class _CustomTxtFieldState extends State<CustomTxtField> {
           ),
           filled: true,
           fillColor: Colors.white,
-          contentPadding: EdgeInsets.symmetric(
-            vertical: 8.0,
-            horizontal: 8.0
-          ),
+          contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: BorderSide(color: Colors.black),

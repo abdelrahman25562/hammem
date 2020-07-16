@@ -85,6 +85,7 @@ class _Q5P1State extends State<Q5P1> {
                               fontFamily: 'Cairo',
                               fontWeight: FontWeight.bold),
                         ),
+                        Spacer(),
                         SliderHammem(
                           title: data[index],
                         ),

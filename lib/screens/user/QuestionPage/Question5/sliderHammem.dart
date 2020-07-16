@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hammem/Model/questionModel.dart';
 import 'package:hammem/provider/questionProvider.dart';
+import 'package:hammem/widgets/StarRating.dart';
 import 'package:provider/provider.dart';
 
 class SliderHammem extends StatefulWidget {
@@ -13,7 +14,7 @@ class SliderHammem extends StatefulWidget {
 }
 
 class _SliderHammemState extends State<SliderHammem> {
-  double _value = 0.5;
+  int currentSelected = 4;
 
   @override
   Widget build(BuildContext context) {
@@ -23,35 +24,93 @@ class _SliderHammemState extends State<SliderHammem> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            'طويل',
-            style: TextStyle(
-                fontSize: screen.size.width > 365 ? 12 : 10,
-                fontFamily: 'Cairo'),
-          ),
-          Slider(
-            value: _value,
-            onChanged: (double newValue) {
+          customButton(
+            index: 0,
+            title: 'طويل',
+            selected: currentSelected,
+            onTap: () {
               setState(() {
-                _value = newValue;
+                currentSelected = 0;
               });
               provider.addAnswer(
                 element: QuestionModel(
                   question: widget.title,
-                  questionType: QuestionType.Text,
                   id: 4,
-                  answer: _value.toStringAsFixed(2).toString() + ' / 1',
+                  questionType: QuestionType.Text,
+                  answer: 'طويل',
                 ),
               );
             },
           ),
-          Text(
-            'قصير',
-            style: TextStyle(
-                fontSize: screen.size.width > 365 ? 12 : 10,
-                fontFamily: 'Cairo'),
+          customButton(
+            index: 1,
+            title: 'متوسط',
+            selected: currentSelected,
+            onTap: () {
+              setState(() {
+                currentSelected = 1;
+              });
+              provider.addAnswer(
+                element: QuestionModel(
+                  question: widget.title,
+                  id: 4,
+                  questionType: QuestionType.Text,
+                  answer: 'متوسط',
+                ),
+              );
+            },
+          ),
+          customButton(
+            index: 2,
+            title: 'قصير',
+            selected: currentSelected,
+            onTap: () {
+              setState(() {
+                currentSelected = 2;
+              });
+              provider.addAnswer(
+                element: QuestionModel(
+                  question: widget.title,
+                  id: 4,
+                  questionType: QuestionType.Text,
+                  answer: 'قصير',
+                ),
+              );
+            },
           ),
         ],
+      ),
+    );
+  }
+
+  Widget customButton({
+    int index,
+    int selected,
+    Function onTap,
+    String title,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: 10.0,
+          vertical: 5.0,
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: 15.0,
+          vertical: 7.5,
+        ),
+        decoration: BoxDecoration(
+          color: selected == index ? Colors.grey[300] : Colors.white,
+          border: Border.all(
+            color: Colors.black,
+            width: 1.0,
+          ),
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Center(
+          child: Txt(title),
+        ),
       ),
     );
   }
