@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hammem/provider/questionProvider.dart';
 import 'package:hammem/screens/user/HomePage.dart';
@@ -14,26 +15,20 @@ class _FinalState extends State<Final> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(children: [
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
-          ),
-          Center(
-              child: Image.asset(
+        body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+        Image.asset(
             'assets/images/finish.png',
             height: 100,
             width: 100,
-          )),
+          ),
           SizedBox(height: 20.0),
-          Center(
-              child: Text(
+          Text(
             'تم الانتهاء من الاستبيان',
             style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
-          )),
+          ),
           Consumer<QuestionProvider>(
             builder: (context, provider, _) => Center(
                 child: InkWell(
@@ -52,8 +47,7 @@ class _FinalState extends State<Final> {
               ),
             )),
           ),
-          Center(
-              child: InkWell(
+          InkWell(
             onTap: () {
               Navigator.pushNamed(context, Question.id);
             },
@@ -64,7 +58,7 @@ class _FinalState extends State<Final> {
                   fontFamily: 'Cairo',
                   color: Color(0xffFC009E)),
             ),
-          )),
+          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -82,16 +76,14 @@ class _FinalState extends State<Final> {
                       color: Color(0xffFC009E)),
                 ),
               )),
-              Center(
-                child: Text(
+              Text(
                   'االعودة الى ',
                   style: TextStyle(fontSize: 20.0, fontFamily: 'Cairo'),
                 ),
-              ),
+
             ],
           )
-        ],
-      )
+
     ]));
   }
 }

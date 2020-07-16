@@ -31,9 +31,7 @@ class _PhotoEditingState extends State<PhotoEditing> {
         return ImageEditorPro(
           appBarColor: Colors.blue,
           bottomBarColor: Colors.blue,
-          image: _image,
-          index: widget.index,
-          question: widget.question,
+
         );
       })).then((geteditimage) {
         if (geteditimage != null) {

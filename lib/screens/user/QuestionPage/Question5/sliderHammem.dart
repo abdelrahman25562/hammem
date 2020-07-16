@@ -93,15 +93,15 @@ class _SliderHammemState extends State<SliderHammem> {
       onTap: onTap,
       child: Container(
         margin: EdgeInsets.symmetric(
-          horizontal: 10.0,
-          vertical: 5.0,
+          horizontal: 4.0,
+          vertical: 4.0,
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: 15.0,
-          vertical: 7.5,
+          horizontal: 8.0,
+          vertical: 8.0,
         ),
         decoration: BoxDecoration(
-          color: selected == index ? Colors.grey[300] : Colors.white,
+          color: selected == index ? Color(0xffFE9CD9) : Colors.white,
           border: Border.all(
             color: Colors.black,
             width: 1.0,

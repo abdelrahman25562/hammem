@@ -48,7 +48,7 @@ class _Q5P2State extends State<Q5P2> {
               children: <Widget>[
                 Text(
                   'الاستبيان',
-                  style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
+                  style: TextStyle(fontSize: 20.0, fontFamily: 'Cairo'),
                 )
               ],
             ),
@@ -67,13 +67,9 @@ class _Q5P2State extends State<Q5P2> {
                 ),
               ],
             ),
-            Row(
-              children: <Widget>[
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 2.09,
-                ),
-                Txt('كيف تقيم رائحة الشريك بالعادة')
-              ],
+            Padding(
+              padding: const EdgeInsets.only(right:8.0,left: 8.0),
+              child: Container(child: Txt('كيف تقيم رائحة الشريك بالعادة')),
             ),
             Container(
               child: ListView.builder(
@@ -121,7 +117,7 @@ class _Q5P2State extends State<Q5P2> {
                             'متابعه',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 25.0,
+                                fontSize: 18.0,
                                 fontFamily: 'Cairo'),
                           ),
                         ),

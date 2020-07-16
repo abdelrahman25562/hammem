@@ -83,7 +83,7 @@ class _Q6State extends State<Q6> {
                       'بدء',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 25.0,
+                          fontSize: 18.0,
                           fontFamily: 'Cairo'),
                     ),
                   ),

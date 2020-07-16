@@ -44,104 +44,45 @@ class _Q4Part1State extends State<Q4Part1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'الاستبيان',
-                style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
-              )
-            ],
-          ),
-          Row(
-            textDirection: TextDirection.rtl,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 120,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          leading:   IconButton(
+              icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
+        ),
+        body: ListView(
+          children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'الاستبيان',
+                  style: TextStyle(fontSize: 20.0, fontFamily: 'Cairo'),
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right:8.0,left: 8.0),
+              child: Container(
+                child: Text(
+                  ' قم باختيار العلامة التى تريد استخدامها للتعلي قم باختيار العلامة التى تريد استخدامها للتعلي قم باختيار العلامة التى تريد استخدامها للتعليم',
+                  style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
+                ),
               ),
-              Text(
-                'قم باختيار العلامة التى تريد استخدامها للتعليم',
-                style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
-              ),
-            ],
-          ),
-          Row(
-            textDirection: TextDirection.rtl,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.093,
-              ),
-              Text(
-                'على مناطق المداعبة التى تفضلهاوالمناطق',
-                style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
-              ),
-            ],
-          ),
-          Row(
-            textDirection: TextDirection.rtl,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.051,
-              ),
-              Text(
-                'التى لا تفضلها علي حسب اختيارك للعلامة',
-                style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Row(
-            textDirection: TextDirection.rtl,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.048,
-              ),
-              Text(
-                'المناطق التى يحبها الرجال عند النساء',
-                style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
-              ),
-            ],
-          ),
-          Row(
-            textDirection: TextDirection.ltr,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.01,
-              ),
-              Text(
-                'قم باختيار علامتك سواء كانت(المفضلة/الغير مفضلة)',
-                style: TextStyle(fontSize: 15.0, fontFamily: 'Cairo'),
-              ),
-            ],
-          ),
-          Row(
-            textDirection: TextDirection.rtl,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.048,
-              ),
-              Text(
-                'من خلال سحب علامات الصح والخطأ الموجوده بالصوره',
-                style: TextStyle(fontSize: 15.0, fontFamily: 'Cairo'),
-              ),
-            ],
-          ),
+            ),
+
+
+SizedBox(height: 40.0,),
+
+
+
 //          Row(children: <Widget>[
 //            Container(
 //              height: MediaQuery.of(context).size.height / 2,
@@ -259,103 +200,74 @@ class _Q4Part1State extends State<Q4Part1> {
 //            ),
 //
 //          ]),
-          PhotoEditing(
-            imagePath: 'assets/images/112.png',
-            question: 'المناطق التى يحبها الرجال عند النساء',
-            index: 0,
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Row(
-            textDirection: TextDirection.rtl,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.048,
+            PhotoEditing(
+              imagePath: 'assets/images/112.png',
+              question: 'المناطق التى يحبها الرجال عند النساء',
+              index: 0,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right:8.0,left: 8.0),
+              child: Container(
+                child: Text(
+                  ' قم باختيار العلامة التى تريد استخدامها للتعلي قم باختيار العلامة التى تريد استخدامها للتعلي قم باختيار العلامة التى تريد استخدامها للتعليم',
+                  style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
+                ),
               ),
-              Text(
-                'المناطق التى تحبها النساء عند الرجال',
-                style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
-              ),
-            ],
-          ),
-          Row(
-            textDirection: TextDirection.ltr,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.01,
-              ),
-              Text(
-                'قم باختيار علامتك سواء كانت(المفضلة/الغير مفضلة)',
-                style: TextStyle(fontSize: 15.0, fontFamily: 'Cairo'),
-              ),
-            ],
-          ),
-          Row(
-            textDirection: TextDirection.rtl,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.048,
-              ),
-              Text(
-                'من خلال سحب علامات الصح والخطأ الموجوده بالصوره',
-                style: TextStyle(fontSize: 15.0, fontFamily: 'Cairo'),
-              ),
-            ],
-          ),
-          PhotoEditing(
-            imagePath: 'assets/images/133.png',
-            question: 'المناطق التى تحبها النساء عند الرجال',
-            index: 1,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Builder(
-              builder: (context) => Consumer<QuestionProvider>(
-                builder: (context, provider, _) => FlatButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  onPressed: () {
-                    if (provider.images.length < 2) {
-                      Scaffold.of(context).hideCurrentSnackBar();
-                      Scaffold.of(context).showSnackBar(
-                          SnackBar(content: Text('يجب ان تعلم الصورتين')));
-                    }
-                    provider.generatePdfAndView(
-                      context: context,
-                      questionNum: 3,
-                      type: QuestionType.Image,
-                    );
-                    Navigator.pushNamed(context, Q5.id);
-                  },
-                  child: Ink(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          stops: [
-                            0.3,
-                            1
-                          ],
-                          colors: <Color>[
-                            Color(0xE263878C),
-                            Color(0x2FBCEF82)
-                          ]),
-                      borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                    ),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      alignment: Alignment.center,
-                      child: Center(
-                        child: Text(
-                          'بدء',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25.0,
-                              fontFamily: 'Cairo'),
+            ),
+            PhotoEditing(
+              imagePath: 'assets/images/133.png',
+              question: 'المناطق التى تحبها النساء عند الرجال',
+              index: 1,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Builder(
+                builder: (context) => Consumer<QuestionProvider>(
+                  builder: (context, provider, _) => FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    onPressed: () {
+                      if (provider.images.length < 2) {
+                        Scaffold.of(context).hideCurrentSnackBar();
+                        Scaffold.of(context).showSnackBar(
+                            SnackBar(content: Text('يجب ان تعلم الصورتين')));
+                      }
+                      provider.generatePdfAndView(
+                        context: context,
+                        questionNum: 3,
+                        type: QuestionType.Image,
+                      );
+                      Navigator.pushNamed(context, Q5.id);
+                    },
+                    child: Ink(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            stops: [
+                              0.3,
+                              1
+                            ],
+                            colors: <Color>[
+                              Color(0xE263878C),
+                              Color(0x2FBCEF82)
+                            ]),
+                        borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        alignment: Alignment.center,
+                        child: Center(
+                          child: Text(
+                            'متابعه',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                                fontFamily: 'Cairo'),
+                          ),
                         ),
                       ),
                     ),
@@ -363,11 +275,11 @@ class _Q4Part1State extends State<Q4Part1> {
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 55.0,
-          ),
-        ],
+            SizedBox(
+              height: 55.0,
+            ),
+          ],
+        ),
       ),
     );
   }
