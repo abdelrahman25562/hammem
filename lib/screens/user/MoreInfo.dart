@@ -161,7 +161,7 @@ class _MoreState extends State<More> {
         await EncodingProvider.encodeHLS(rawVideoPath, outDirPath);
 
     setState(() {
-      _processPhase = 'Uploading thumbnail to firebase storage';
+      _processPhase = 'Uploading thumbnail to storage';
       _progress = 0.0;
     });
     final thumbUrl = await _uploadFile(thumbFilePath, 'thumbnail');

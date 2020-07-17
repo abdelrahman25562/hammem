@@ -224,7 +224,7 @@ class _AdminsState extends State<Admins> {
       child: Scaffold(
         body: Center(child: _processing ? _getProgressBar() : _getListView()),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 15.0),
+          padding: const EdgeInsets.only(bottom: 40.0),
           child: SizedBox(
             width: MediaQuery.of(context).size.width / 1.1,
             height: MediaQuery.of(context).size.height / 15,

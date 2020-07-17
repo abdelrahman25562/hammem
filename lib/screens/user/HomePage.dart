@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hammem/provider/questionProvider.dart';
 import 'package:hammem/screens/user/Info.dart';
 import 'package:hammem/screens/user/MoreInfo.dart';
 import 'package:hammem/screens/user/QuestionPage/questionPage.dart';
 import 'package:hammem/services/auth.dart';
 import 'package:hammem/widgets/Custom_button.dart';
+import 'package:provider/provider.dart';
 
 import '../login.dart';
 
@@ -87,6 +89,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             icon: Icon(Icons.exit_to_app,color: Colors.black,size: 35,),
             onPressed: (){
               _auth.signOut();
+              Navigator.of(context).push(MaterialPageRoute(builder: (conntext)=>LoginScreen()));
             }
         ),
       ),
@@ -210,13 +213,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Button(
-              onClick: () {
-                Navigator.pushNamed(context, HomePage.id);
-              },
-              color: Color(0xffE7AEC3),
-              hint: 'استعراض التقرير',
-              image: 'assets/images/result.png',
+            Consumer<QuestionProvider>(
+              builder: (context, provider, _) =>  Button(
+                onClick: () {
+                  provider.generatePdfAndView(
+                    context: context,
+                    questionNum: 10,
+                  );
+                },
+                color: Color(0xffE7AEC3),
+                hint: 'استعراض التقرير',
+                image: 'assets/images/result.png',
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,

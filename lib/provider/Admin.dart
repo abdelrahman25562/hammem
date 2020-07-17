@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class AdminMode extends ChangeNotifier {
-  bool inadmin = false;
+  bool inadmin = true;
   changeisadmin(bool value) {
     inadmin = value;
     notifyListeners();

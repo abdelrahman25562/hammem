@@ -159,7 +159,7 @@ class LoginScreen extends StatelessWidget {
         if (password == adminPassword) {
           try {
             await _auth.signIn(_email.trim(), password.trim());
-            Navigator.pushNamed(context, Admins.id);
+            Navigator.pushReplacementNamed(context, Admins.id);
           } catch (e) {
             modelhud.chageisloading(false);
             Scaffold.of(context).showSnackBar(SnackBar(
@@ -178,7 +178,7 @@ class LoginScreen extends StatelessWidget {
       } else {
         try {
           await _auth.signIn(_email.trim(), password.trim());
-          Navigator.pushNamed(context, HomePage.id);
+          Navigator.pushReplacementNamed(context, HomePage.id);
         } catch (e) {
           Scaffold.of(context).showSnackBar(SnackBar(
             content: Text(e.message),
