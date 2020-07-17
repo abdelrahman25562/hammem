@@ -186,7 +186,7 @@ class _MoreState extends State<More> {
     setState(() {
       _processPhase = '';
       _progress = 0.0;
-      _processing = false;
+      _processing = true;
     });
   }
 
@@ -242,18 +242,10 @@ class _MoreState extends State<More> {
             child: Card(
               child: new Container(
                 padding: new EdgeInsets.all(10.0),
-                child: Stack(
-                  children: <Widget>[
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Stack(
-                          children: <Widget>[
-                            Container(
-                              width: thumbWidth.toDouble(),
-                              height: thumbHeight.toDouble(),
-                              child: Center(child: CircularProgressIndicator()),
-                            ),
                             ClipRRect(
                               borderRadius: new BorderRadius.circular(8.0),
                               child: FadeInImage.memoryNetwork(
@@ -261,8 +253,7 @@ class _MoreState extends State<More> {
                                 image: video.thumbUrl,
                               ),
                             ),
-                          ],
-                        ),
+                        SizedBox(width: 20.0,),
                         Expanded(
                           child: Container(
                             margin: new EdgeInsets.only(left: 20.0),
@@ -270,20 +261,21 @@ class _MoreState extends State<More> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                Text("${video.videoName}"),
                                 Container(
                                   margin: new EdgeInsets.only(top: 12.0),
                                   child: Text(
-                                      'Uploaded ${timeago.format(new DateTime.fromMillisecondsSinceEpoch(video.uploadedAt))}'),
+                                      'Uploaded ${timeago.format(new DateTime.fromMillisecondsSinceEpoch(video.uploadedAt))}',style: TextStyle(fontFamily: 'Cairo',fontSize: 12),),
                                 ),
+                                SizedBox(height: 10.0,),
+                                Text("${video.videoName}"),
                               ],
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ],
-                ),
+
+
               ),
             ),
           );
@@ -311,24 +303,20 @@ class _MoreState extends State<More> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('ثقف نفسك',style: TextStyle(color: Colors.black),),
-        centerTitle: true,
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        leading: IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: (){
-          Navigator.pop(context);
-        }),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('ثقف نفسك',style: TextStyle(color: Colors.black),),
+          centerTitle: true,
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          leading: IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: (){
+            Navigator.pop(context);
+          }),
+        ),
+        body: Center(child: _processing ? _getProgressBar() : _getListView()),
       ),
-      body: Center(child: _processing ? _getProgressBar() : _getListView()),
-      floatingActionButton: FloatingActionButton(
-          child: _processing
-              ? CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                )
-              : Icon(Icons.add),
-          onPressed: _takeVideo),
     );
   }
 }

@@ -227,7 +227,7 @@ class _AdminsState extends State<Admins> {
           padding: const EdgeInsets.only(bottom: 15.0),
           child: SizedBox(
             width: MediaQuery.of(context).size.width / 1.1,
-            height: MediaQuery.of(context).size.height / 8,
+            height: MediaQuery.of(context).size.height / 15,
             child: FloatingActionButton(
                 child: _processing
                     ? CircularProgressIndicator(
@@ -296,15 +296,6 @@ class _AdminsState extends State<Admins> {
                     style: TextStyle(fontFamily: 'Cairo'),
                   ),
              ),
-              SizedBox(height: 20.0,),
-              CustomTextField(
-                onClick: (value) {
-                  title = value;
-                },
-                hint: 'قم باختيار عنوان للفيديو',
-                color: Colors.black,
-              )
-
             ]),
         SizedBox(
           height: MediaQuery.of(context).size.height / 15,
