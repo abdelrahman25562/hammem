@@ -31,7 +31,6 @@ class _PhotoEditingState extends State<PhotoEditing> {
         return ImageEditorPro(
           appBarColor: Colors.blue,
           bottomBarColor: Colors.blue,
-
         );
       })).then((geteditimage) {
         if (geteditimage != null) {

@@ -271,22 +271,6 @@ class _AdminsState extends State<Admins> {
         horizontal: 10.0,
       ),
       children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Image.asset(
-              'assets/images/logo.webp',
-              width: 70.0,
-              height: 75.0,
-              fit: BoxFit.cover,
-            ),
-            IconButton(icon: Icon(Icons.exit_to_app), onPressed: (){
-              _auth.signOut();
-              Navigator.of(context).push(MaterialPageRoute(builder: (conntext)=>LoginScreen()));
-            }),
-          ],
-        ),
-
         Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

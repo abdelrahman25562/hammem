@@ -4,6 +4,7 @@ import 'package:hammem/provider/Admin.dart';
 import 'package:hammem/provider/modelhub.dart';
 import 'package:hammem/provider/questionProvider.dart';
 import 'package:hammem/screens/Admins/Admins.dart';
+import 'package:hammem/screens/Admins/homeAdmin.dart';
 import 'package:hammem/screens/SignUp.dart';
 import 'package:hammem/screens/login.dart';
 import 'package:hammem/screens/user/HomePage.dart';
@@ -71,7 +72,7 @@ class MyApp extends StatelessWidget {
           More.id: (context) => More(),
           Question.id: (context) => More(),
           Result.id: (context) => Result(),
-          Admins.id: (context) => Admins(),
+          Admins.id: (context) => HomeAdmin(),
           Question.id: (context) => Question(),
           Question1.id: (context) => Question1(),
           Qpart1.id: (context) => Qpart1(),

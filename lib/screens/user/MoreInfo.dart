@@ -230,7 +230,11 @@ class _MoreState extends State<More> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-               Icon(Icons.ondemand_video,size: 60,color: Colors.black54,),
+               CircleAvatar(
+                 radius: 30,
+                 backgroundImage: AssetImage('assets/images/logo.png'),
+                 backgroundColor: Colors.grey[200],
+               ),
                SizedBox(width: 20.0,),
                Column(
                  mainAxisAlignment: MainAxisAlignment.start,
@@ -242,25 +246,47 @@ class _MoreState extends State<More> {
                    ' تم تحميله منذ ${timeago.format(new DateTime.fromMillisecondsSinceEpoch(video.uploadedAt))}',style: TextStyle(fontFamily: 'Cairo',fontSize: 12),),
                ),
                    Text("${video.videoName}"),
-                   GestureDetector(
-                     onTap: (){
-                       Navigator.push(context, MaterialPageRoute(builder: (context){
-                         return Player(
-                           video: video,
-                         );
-                       }));
-                     },
-                       child:  ClipRRect(
-                         borderRadius: new BorderRadius.circular(8.0),
+                  Stack(
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return Player(
+                              video: video,
+                            );
+                          }));
+                        },
+                        child:  ClipRRect(
+                          borderRadius: new BorderRadius.circular(8.0),
                           child: FadeInImage.memoryNetwork(
                             imageCacheWidth: 200,
-                           imageCacheHeight: 130,
-                           fit: BoxFit.fitWidth,
-                           placeholder: kTransparentImage,
-                           image: video.thumbUrl,
-                                  ),
-                                ),
-                   ),
+                            imageCacheHeight: 130,
+                            fit: BoxFit.fitWidth,
+                            placeholder: kTransparentImage,
+                            image: video.thumbUrl,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 40,
+                        right: 80.0,
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                              return Player(
+                                video: video,
+                              );
+                            }));
+                          },
+                          child: CircleAvatar(
+                            radius: 25,
+                            backgroundColor: Color(0xffFC009E),
+                            child: Icon(Icons.play_arrow),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                  Divider(
                    height: 20,
                    color: Colors.grey,

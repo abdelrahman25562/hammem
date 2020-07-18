@@ -150,14 +150,13 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
-  void _validate(BuildContext context) async {
+  void _validate(BuildContext context)async{
     final modelhud = Provider.of<Mpdalhub>(context, listen: false);
     modelhud.chageisloading(true);
-    if (globalKey.currentState.validate()) {
+    if (globalKey.currentState.validate()){
       globalKey.currentState.save();
-      if (Provider.of<AdminMode>(context, listen: false).inadmin) {
-        if (password == adminPassword&&_email==adminMail) {
-          try {
+      if (password == adminPassword&&_email==adminMail){
+        try {
             await _auth.signIn(_email.trim(), password.trim());
             Navigator.pushReplacementNamed(context, Admins.id);
           } catch (e) {
@@ -166,17 +165,7 @@ class LoginScreen extends StatelessWidget {
               content: Text(e.message, style: TextStyle(fontFamily: 'Cairo')),
             ));
           }
-        } else {
-          modelhud.chageisloading(false);
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text(
-              'حدث خطأ ما !',
-              style: TextStyle(fontFamily: 'Cairo'),
-            ),
-          ));
-        }
-      }
-      else {
+        }else if(password != adminPassword&&_email!=adminMail){
         try {
           await _auth.signIn(_email.trim(), password.trim());
           Navigator.pushReplacementNamed(context, HomePage.id);
@@ -185,8 +174,57 @@ class LoginScreen extends StatelessWidget {
             content: Text(e.message),
           ));
         }
+      }else{
+        modelhud.chageisloading(false);
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text(
+              'حدث خطأ ما !',
+              style: TextStyle(fontFamily: 'Cairo'),
+            ),
+          ));
       }
-    }
+      }
     modelhud.chageisloading(false);
+    }
   }
-}
+
+//  void _validate(BuildContext context) async {
+//    final modelhud = Provider.of<Mpdalhub>(context, listen: false);
+//    modelhud.chageisloading(true);
+//    if (globalKey.currentState.validate()) {
+//      globalKey.currentState.save();
+//      if (Provider.of<AdminMode>(context, listen: false).inadmin) {
+//        if (password == adminPassword&&_email==adminMail) {
+//          try {
+//            await _auth.signIn(_email.trim(), password.trim());
+//            Navigator.pushReplacementNamed(context, Admins.id);
+//          } catch (e) {
+//            modelhud.chageisloading(false);
+//            Scaffold.of(context).showSnackBar(SnackBar(
+//              content: Text(e.message, style: TextStyle(fontFamily: 'Cairo')),
+//            ));
+//          }
+//        } else {
+//          modelhud.chageisloading(false);
+//          Scaffold.of(context).showSnackBar(SnackBar(
+//            content: Text(
+//              'حدث خطأ ما !',
+//              style: TextStyle(fontFamily: 'Cairo'),
+//            ),
+//          ));
+//        }
+//      }
+//      else {
+//        try {
+//          await _auth.signIn(_email.trim(), password.trim());
+//          Navigator.pushReplacementNamed(context, HomePage.id);
+//        } catch (e) {
+//          Scaffold.of(context).showSnackBar(SnackBar(
+//            content: Text(e.message),
+//          ));
+//        }
+//      }
+//    }
+//    modelhud.chageisloading(false);
+//  }
+//}
