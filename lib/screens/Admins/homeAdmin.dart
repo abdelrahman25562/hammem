@@ -30,6 +30,8 @@ class HomeAdmin extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            Text(':قم برفع',style: TextStyle(fontSize: 25.0,color: Colors.black,fontFamily: 'Cairo'),),
+            SizedBox(height: 20.0,),
             GestureDetector(
               onTap: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Admins()));

@@ -225,6 +225,13 @@ class _AdminsState extends State<Admins> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          leading: IconButton(icon: Icon(Icons.arrow_forward_ios,color: Colors.black,), onPressed: (){
+            Navigator.pop(context);
+          }),
+        ),
         body: Center(child: _processing ? _getProgressBar() : _getListView()),
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 40.0),

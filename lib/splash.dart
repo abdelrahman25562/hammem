@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hammem/screens/login.dart';
+import 'package:hammem/services/auth.dart';
 
 //==============================splash-screen======================//
 class Splash extends StatefulWidget {
   static String id = 'Splashscreen';
+  final _auth = Auth();
   @override
   _SplashState createState() => _SplashState();
 }
@@ -20,7 +22,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     //=====================Nav-Loginscreen===========================//
     Timer(
-        Duration(seconds: 6),
+        Duration(seconds: 3),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (BuildContext context) => LoginScreen())));
     return Scaffold(
