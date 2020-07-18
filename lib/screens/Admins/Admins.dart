@@ -7,10 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:hammem/Model/video_info.dart';
 import 'package:hammem/provider/encoding_provider.dart';
 import 'package:hammem/provider/firebase_provider.dart';
+import 'package:hammem/services/auth.dart';
 import 'package:hammem/widgets/Custom_detector.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+
+import '../login.dart';
 
 class Admins extends StatefulWidget {
   static String id = 'Admins';
@@ -30,7 +33,7 @@ class _AdminsState extends State<Admins> {
   String _processPhase = '';
   final bool _debugMode = false;
   String title;
-
+  final _auth = Auth();
   @override
   void initState() {
     FirebaseProvider.listenToVideos((newVideos) {
@@ -278,7 +281,8 @@ class _AdminsState extends State<Admins> {
               fit: BoxFit.cover,
             ),
             IconButton(icon: Icon(Icons.exit_to_app), onPressed: (){
-              //todo---
+              _auth.signOut();
+              Navigator.of(context).push(MaterialPageRoute(builder: (conntext)=>LoginScreen()));
             }),
           ],
         ),

@@ -17,6 +17,7 @@ const String testdevice = '';
 
 class LoginScreen extends StatelessWidget {
   final adminPassword = '2556250';
+  final adminMail = 'abdelrahman25562@gmail.com';
   static String id = 'LoginScreen';
   String _email, password;
   final _auth = Auth();
@@ -149,14 +150,13 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
-
   void _validate(BuildContext context) async {
     final modelhud = Provider.of<Mpdalhub>(context, listen: false);
     modelhud.chageisloading(true);
     if (globalKey.currentState.validate()) {
       globalKey.currentState.save();
       if (Provider.of<AdminMode>(context, listen: false).inadmin) {
-        if (password == adminPassword) {
+        if (password == adminPassword&&_email==adminMail) {
           try {
             await _auth.signIn(_email.trim(), password.trim());
             Navigator.pushReplacementNamed(context, Admins.id);
@@ -170,12 +170,13 @@ class LoginScreen extends StatelessWidget {
           modelhud.chageisloading(false);
           Scaffold.of(context).showSnackBar(SnackBar(
             content: Text(
-              'Something went wrong !',
+              'حدث خطأ ما !',
               style: TextStyle(fontFamily: 'Cairo'),
             ),
           ));
         }
-      } else {
+      }
+      else {
         try {
           await _auth.signIn(_email.trim(), password.trim());
           Navigator.pushReplacementNamed(context, HomePage.id);

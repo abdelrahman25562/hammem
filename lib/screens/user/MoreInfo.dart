@@ -150,8 +150,7 @@ class _MoreState extends State<More> {
     });
 
     final thumbFilePath =
-        await EncodingProvider.getThumb(rawVideoPath, thumbWidth, thumbHeight);
-
+        await EncodingProvider.getThumb(rawVideoPath, MediaQuery.of(context).size.width*0.6,MediaQuery.of(context).size.height*0.15);
     setState(() {
       _processPhase = 'Encoding video';
       _progress = 0.0;
@@ -226,7 +225,51 @@ class _MoreState extends State<More> {
         itemCount: _videos.length,
         itemBuilder: (BuildContext context, int index) {
           final video = _videos[index];
-          return GestureDetector(
+          return
+           Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+               Icon(Icons.ondemand_video,size: 60,color: Colors.black54,),
+               SizedBox(width: 20.0,),
+               Column(
+                 mainAxisAlignment: MainAxisAlignment.start,
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: <Widget>[
+               Container(
+                 //margin: new EdgeInsets.only(top: 12.0),
+                 child: Text(
+                   ' تم تحميله منذ ${timeago.format(new DateTime.fromMillisecondsSinceEpoch(video.uploadedAt))}',style: TextStyle(fontFamily: 'Cairo',fontSize: 12),),
+               ),
+                   Text("${video.videoName}"),
+                   GestureDetector(
+                     onTap: (){
+                       Navigator.push(context, MaterialPageRoute(builder: (context){
+                         return Player(
+                           video: video,
+                         );
+                       }));
+                     },
+                       child:  ClipRRect(
+                         borderRadius: new BorderRadius.circular(8.0),
+                          child: FadeInImage.memoryNetwork(
+                            imageCacheWidth: 200,
+                           imageCacheHeight: 130,
+                           fit: BoxFit.fitWidth,
+                           placeholder: kTransparentImage,
+                           image: video.thumbUrl,
+                                  ),
+                                ),
+                   ),
+                 Divider(
+                   height: 20,
+                   color: Colors.grey,
+                 )
+                 ],
+               )
+              ],
+            );
+            GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
@@ -259,14 +302,13 @@ class _MoreState extends State<More> {
                             margin: new EdgeInsets.only(left: 20.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Container(
                                   margin: new EdgeInsets.only(top: 12.0),
                                   child: Text(
                                       'Uploaded ${timeago.format(new DateTime.fromMillisecondsSinceEpoch(video.uploadedAt))}',style: TextStyle(fontFamily: 'Cairo',fontSize: 12),),
                                 ),
-                                SizedBox(height: 10.0,),
                                 Text("${video.videoName}"),
                               ],
                             ),
