@@ -132,7 +132,7 @@ class _MoreState extends State<More> {
   }
 
   Future<void> _processVideo(File rawVideoFile) async {
-    final String rand = '${new Random().nextInt(10000)}';
+    final String rand = '${new Random().nextInt(30000)}';
     final videoName = 'video$rand';
     final Directory extDir = await getApplicationDocumentsDirectory();
     final outDirPath = '${extDir.path}/Videos/$videoName';
@@ -225,7 +225,7 @@ class _MoreState extends State<More> {
         itemCount: _videos.length,
         itemBuilder: (BuildContext context, int index) {
           final video = _videos[index];
-          return
+          return _videos.length==null?Center(child:Text('غير موجود فيديوهات الان')):
            Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

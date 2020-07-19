@@ -70,7 +70,7 @@ class _Q3Part2State extends State<Q3Part2> {
                   ],
                 ),
                 CDT(
-                  hint: 'قم بكتابة الأشياء المفضلة',
+                  hint: 'قم بكتابة الأشياء المفضلة التي تحبها عند الممارسة الحميمية',
                   color: Colors.grey,
                   question: ' الأشياء المفضلة ',
                 ),
@@ -99,7 +99,7 @@ class _Q3Part2State extends State<Q3Part2> {
                   ],
                 ),
                 CDT(
-                  hint: 'قم بكتابة الأشياء المرفوضه',
+                  hint: 'قم بكتابة الأشياء المرفوضة التي لا تحبها عند الممارسة الحميمية',
                   color: Colors.grey,
                   question: ' الأشياء المرفوضه ',
                 ),
