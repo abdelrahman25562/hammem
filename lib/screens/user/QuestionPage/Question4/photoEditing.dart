@@ -31,6 +31,9 @@ class _PhotoEditingState extends State<PhotoEditing> {
         return ImageEditorPro(
           appBarColor: Colors.blue,
           bottomBarColor: Colors.blue,
+          image: _image,
+          index: widget.index,
+          question: widget.question,
         );
       })).then((geteditimage) {
         if (geteditimage != null) {
@@ -68,8 +71,11 @@ class _PhotoEditingState extends State<PhotoEditing> {
               onPressed: () async {
                 getimageditor();
               },
-              color: Colors.blue,
-              child: new Txt('أبدأ'),
+              color: Color(0xffFC009E),
+              child:Text(
+                'ابدأ',
+                style: TextStyle(fontSize: 13.0, fontFamily: 'Cairo',color: Colors.white),
+              )
             ),
           )
         : Column(
