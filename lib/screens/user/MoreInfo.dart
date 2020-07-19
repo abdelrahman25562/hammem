@@ -379,7 +379,7 @@ class _MoreState extends State<More> {
           centerTitle: true,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          leading: IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: (){
+          leading: IconButton(icon: Icon(Icons.arrow_forward_ios,color: Colors.black,), onPressed: (){
             Navigator.pop(context);
           }),
         ),

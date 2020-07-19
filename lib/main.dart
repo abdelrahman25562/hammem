@@ -31,9 +31,7 @@ import 'package:hammem/splash.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(
-  DevicePreview(
-    builder: (context) => MyApp(),
-  ),
+  MyApp(),
 );
 
 class MyApp extends StatelessWidget {
@@ -53,7 +51,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        builder: DevicePreview.appBuilder,
+        //builder: DevicePreview.appBuilder,
         title: "حميم",
         color: Colors.grey,
         debugShowMaterialGrid: false,
