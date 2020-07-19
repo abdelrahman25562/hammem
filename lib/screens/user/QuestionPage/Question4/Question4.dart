@@ -62,7 +62,7 @@ class _Question4State extends State<Question4> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'سوف تعرض عليك صور للاماكن المثيرة والغير مثيرة بالنسبة لك عند النساء او بالنسبة لكي عند الرجال',
+                          'سوف تعرض عليك صور للاماكن المثيرة والغير مثيرة بالنسبة لك عند النساء او بالنسبة لكي عند الرجال , والمناطق التي تثيرك (رجل/ انثي) عند المداعبة فيها بجسدك',
                           style: TextStyle(fontSize: 18.0, fontFamily: 'Cairo'),
                         ),
                       ),

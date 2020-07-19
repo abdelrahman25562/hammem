@@ -68,7 +68,7 @@ class _Qpart1State extends State<Qpart1> {
               width: 10.0,
             ),
             Text(
-              'اللسان والفم',
+              'اللسان والفم والتقبيل والأحضان',
               style: TextStyle(
                   fontSize: 18.0, color: Color(0xffFC009E), fontFamily: 'Cairo'),
             ),
