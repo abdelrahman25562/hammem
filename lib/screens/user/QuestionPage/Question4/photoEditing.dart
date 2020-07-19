@@ -90,8 +90,11 @@ class _PhotoEditingState extends State<PhotoEditing> {
                   onPressed: () async {
                     getimageditor();
                   },
-                  color: Colors.blue,
-                  child: new Txt('تعديل'),
+                    color: Color(0xffFC009E),
+                    child:Text(
+                      'تعديل',
+                      style: TextStyle(fontSize: 13.0, fontFamily: 'Cairo',color: Colors.white),
+                    )
                 ),
               )
             ],

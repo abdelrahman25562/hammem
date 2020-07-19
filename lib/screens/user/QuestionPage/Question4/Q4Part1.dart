@@ -118,7 +118,7 @@ SizedBox(height: 40.0,),
               padding: const EdgeInsets.only(right:8.0,left: 8.0),
               child: Container(
                 child: Text(
-                  'قم باختيار علامتك سواء كانت (المفضلة / الغير مفضلة) وقم بالضغط علي الصورة التالية والتعليم علي المناطق',
+                  'أو المناطق التي يحبها الرجال في جسدهم عندما يتم الداعبه فيها من قبل الناساء',
                   style: TextStyle(fontSize: 14.0, fontFamily: 'Cairo',color: Colors.grey),
                 ),
               ),
