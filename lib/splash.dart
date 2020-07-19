@@ -18,13 +18,6 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
   }
-  Future<void> _handleStartScreen() async {
-    Auth _auth = Auth();
-    if (await _auth.isLoggedIn()) {
-      Navigator.pushReplacementNamed(context, HomePage.id);
-    }
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
-  }
   @override
   Widget build(BuildContext context) {
     //=====================Nav-Loginscreen===========================//
