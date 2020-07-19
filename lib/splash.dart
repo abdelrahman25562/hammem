@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hammem/screens/login.dart';
+import 'package:hammem/screens/user/HomePage.dart';
 import 'package:hammem/services/auth.dart';
 
 //==============================splash-screen======================//
@@ -17,7 +18,13 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
   }
-
+  Future<void> _handleStartScreen() async {
+    Auth _auth = Auth();
+    if (await _auth.isLoggedIn()) {
+      Navigator.pushReplacementNamed(context, HomePage.id);
+    }
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
+  }
   @override
   Widget build(BuildContext context) {
     //=====================Nav-Loginscreen===========================//
