@@ -15,12 +15,10 @@ class _Q5State extends State<Q5> {
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
+            leading: IconButton(icon: Icon(Icons.arrow_forward_ios,color: Colors.black,), onPressed: (){
+              Navigator.pop(context);
+            }),
             elevation: 0.0,
-            leading:  IconButton(
-                icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
-                onPressed: () {
-                  Navigator.pop(context);
-                }),
           ),
           body: ListView(children: <Widget>[
         Row(

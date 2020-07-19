@@ -42,15 +42,13 @@ class _Qpart1State extends State<Qpart1> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          leading:   IconButton(
-              icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-        ),
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            leading: IconButton(icon: Icon(Icons.arrow_forward_ios,color: Colors.black,), onPressed: (){
+              Navigator.pop(context);
+            }),
+            elevation: 0.0,
+          ),
           body: ListView(children: <Widget>[
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,

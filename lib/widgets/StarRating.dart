@@ -62,7 +62,7 @@ class Rating extends StatefulWidget {
 }
 
 class _RatingState extends State<Rating> {
-  double rating = 3.5;
+  double rating = 1.0;
 
   @override
   Widget build(BuildContext context) {
