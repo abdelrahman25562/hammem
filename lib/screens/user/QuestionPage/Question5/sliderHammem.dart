@@ -26,11 +26,29 @@ class _SliderHammemState extends State<SliderHammem> {
         children: [
           customButton(
             index: 0,
-            title: 'طويل',
+            title: 'طويل جدا',
             selected: currentSelected,
             onTap: () {
               setState(() {
                 currentSelected = 0;
+              });
+              provider.addAnswer(
+                element: QuestionModel(
+                  question: widget.title,
+                  id: 4,
+                  questionType: QuestionType.Text,
+                  answer: 'طويل جدا',
+                ),
+              );
+            },
+          ),
+          customButton(
+            index: 1,
+            title: 'طويل',
+            selected: currentSelected,
+            onTap: () {
+              setState(() {
+                currentSelected = 1;
               });
               provider.addAnswer(
                 element: QuestionModel(
@@ -43,12 +61,12 @@ class _SliderHammemState extends State<SliderHammem> {
             },
           ),
           customButton(
-            index: 1,
+            index: 2,
             title: 'متوسط',
             selected: currentSelected,
             onTap: () {
               setState(() {
-                currentSelected = 1;
+                currentSelected = 2;
               });
               provider.addAnswer(
                 element: QuestionModel(
@@ -61,12 +79,12 @@ class _SliderHammemState extends State<SliderHammem> {
             },
           ),
           customButton(
-            index: 2,
+            index: 3,
             title: 'قصير',
             selected: currentSelected,
             onTap: () {
               setState(() {
-                currentSelected = 2;
+                currentSelected = 3;
               });
               provider.addAnswer(
                 element: QuestionModel(
@@ -74,6 +92,24 @@ class _SliderHammemState extends State<SliderHammem> {
                   id: 4,
                   questionType: QuestionType.Text,
                   answer: 'قصير',
+                ),
+              );
+            },
+          ),
+          customButton(
+            index: 4,
+            title: 'حليق',
+            selected: currentSelected,
+            onTap: () {
+              setState(() {
+                currentSelected = 4;
+              });
+              provider.addAnswer(
+                element: QuestionModel(
+                  question: widget.title,
+                  id: 4,
+                  questionType: QuestionType.Text,
+                  answer: 'حليق',
                 ),
               );
             },
@@ -93,12 +129,12 @@ class _SliderHammemState extends State<SliderHammem> {
       onTap: onTap,
       child: Container(
         margin: EdgeInsets.symmetric(
-          horizontal: 10.0,
+          horizontal: 7.5,
           vertical: 5.0,
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: 15.0,
-          vertical: 7.5,
+          horizontal: 7.0,
+          vertical: 2.5,
         ),
         decoration: BoxDecoration(
           color: selected == index ? Colors.grey[300] : Colors.white,

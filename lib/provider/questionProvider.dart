@@ -263,9 +263,9 @@ class QuestionProvider extends ChangeNotifier {
     }
     if (questionNum == 10) {
       final String dir = (await getApplicationDocumentsDirectory()).path;
-      print(':::::::::::' + dir);
       final String path = '$dir/hammemResult.pdf';
       final File file = File(path);
+      print(':::::::::::' + path);
       await file.writeAsBytes(pdf.save()).whenComplete(
             () => Navigator.of(context).push(
               MaterialPageRoute(
@@ -276,7 +276,6 @@ class QuestionProvider extends ChangeNotifier {
               ),
             ),
           );
-      pdfPath = path;
     }
   }
 

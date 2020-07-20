@@ -82,15 +82,15 @@ class _RatingState extends State<Rating> {
                   setState(() {
                     this.rating = rating;
                     if (rating <= 1) {
-                      image = 'assets/images/1Star.JPG';
+                      image = 'غير مقبوله ابدا';
                     } else if (rating > 1 && rating <= 2) {
-                      image = 'assets/images/2Star.JPG';
+                      image = 'غير مقبوله';
                     } else if (rating > 2 && rating <= 3) {
-                      image = 'assets/images/3Star.JPG';
+                      image = 'لا بأس';
                     } else if (rating > 3 && rating <= 4) {
-                      image = 'assets/images/4Star.JPG';
+                      image = 'جيده';
                     } else if (rating > 4 && rating <= 5) {
-                      image = 'assets/images/5Star.JPG';
+                      image = 'رائعه';
                     } else {
                       image = 'assets/images/1Star.JPG';
                     }
@@ -99,7 +99,7 @@ class _RatingState extends State<Rating> {
                         id: widget.questionPageNumber,
                         answer: image,
                         question: widget.title,
-                        questionType: QuestionType.Image,
+                        questionType: QuestionType.Text,
                       ),
                     );
                   });

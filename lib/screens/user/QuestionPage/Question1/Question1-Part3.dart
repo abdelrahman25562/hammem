@@ -35,8 +35,11 @@ class _Part3State extends State<Part3> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0.0,
-            leading:   IconButton(
-                icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
+            leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                ),
                 onPressed: () {
                   Navigator.pop(context);
                 }),
@@ -122,7 +125,7 @@ class _Part3State extends State<Part3> {
                       onPressed: () {
                         provider.generatePdfAndView(
                           context: context,
-                          type: QuestionType.Image,
+                          type: QuestionType.Text,
                           questionNum: 0,
                         );
                         Navigator.pushNamed(context, Question2.id);
@@ -156,7 +159,6 @@ class _Part3State extends State<Part3> {
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 }

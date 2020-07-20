@@ -100,7 +100,7 @@ class _Q5P2State extends State<Q5P2> {
                           borderRadius: BorderRadius.circular(20)),
                       onPressed: () {
                         provider.generatePdfAndView(
-                          type: QuestionType.Image,
+                          type: QuestionType.Text,
                           questionNum: 4,
                           context: context,
                         );

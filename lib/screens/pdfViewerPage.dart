@@ -16,12 +16,12 @@ class PdfViewerPage extends StatelessWidget {
   const PdfViewerPage({Key key, this.path, this.images}) : super(key: key);
 
   Future<void> _shareMixed() async {
+    final image1 = images[0];
+    final image2 = images[1];
     try {
-      final image1 = images[0];
-      final image2 = images[1];
-      final ByteData bytes3 = await rootBundle.load(path);
       final ByteData bytes1 = await rootBundle.load(image1.path);
       final ByteData bytes2 = await rootBundle.load(image2.path);
+      final ByteData bytes3 = await rootBundle.load(path);
       await Share.files(
         'esys images',
         {
@@ -32,8 +32,9 @@ class PdfViewerPage extends StatelessWidget {
         '*/*',
         text: 'My hammem Results.',
       );
+      print(bytes1.buffer.asUint8List().toString());
     } catch (e) {
-      print('error: $e');
+      print('error: ' + e.toString());
     }
   }
 
