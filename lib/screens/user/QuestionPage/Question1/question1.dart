@@ -5,7 +5,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hammem/screens/user/QuestionPage/Question1/Question1-Part2.dart';
-import 'package:hammem/widgets/StarRating.dart';
+import 'package:hammem/screens/user/QuestionPage/Question5/sliderHammem.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Question1 extends StatefulWidget {
@@ -44,12 +44,15 @@ class _Question1State extends State<Question1> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
-            elevation: 0.0,
-            leading:   IconButton(
-                icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
+            leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                ),
                 onPressed: () {
                   Navigator.pop(context);
                 }),
+            elevation: 0.0,
           ),
           body: ListView(
             children: <Widget>[
@@ -83,9 +86,28 @@ class _Question1State extends State<Question1> {
                   shrinkWrap: true,
                   itemCount: data.length,
                   itemBuilder: (context, index) {
-                    return Rating(
-                      questionPageNumber: 0,
-                      title: data[index],
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 2.5,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            data[index],
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Spacer(),
+                          SliderHammem(
+                            title: data[index],
+                            id: 0,
+                            other: true,
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),

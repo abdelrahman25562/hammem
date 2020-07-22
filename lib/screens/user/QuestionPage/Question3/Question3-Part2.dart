@@ -23,12 +23,15 @@ class _Q3Part2State extends State<Q3Part2> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          elevation: 0.0,
-          leading:  IconButton(
-              icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
+          leading: IconButton(
+              icon: Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black,
+              ),
               onPressed: () {
                 Navigator.pop(context);
               }),
+          elevation: 0.0,
         ),
         body: Form(
           key: _formkey,
@@ -70,7 +73,8 @@ class _Q3Part2State extends State<Q3Part2> {
                   ],
                 ),
                 CDT(
-                  hint: 'قم بكتابة الأشياء المفضلة',
+                  hint:
+                      'قم بكتابة الأشياء المفضلة التي تحبها عند الممارسة الحميمية',
                   color: Colors.grey,
                   question: ' الأشياء المفضلة ',
                 ),
@@ -99,7 +103,8 @@ class _Q3Part2State extends State<Q3Part2> {
                   ],
                 ),
                 CDT(
-                  hint: 'قم بكتابة الأشياء المرفوضه',
+                  hint:
+                      'قم بكتابة الأشياء المرفوضة التي لا تحبها عند الممارسة الحميمية',
                   color: Colors.grey,
                   question: ' الأشياء المرفوضه ',
                 ),
@@ -135,7 +140,8 @@ class _Q3Part2State extends State<Q3Part2> {
                                   Color(0xE263878C),
                                   Color(0x2FBCEF82)
                                 ]),
-                            borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(80.0)),
                           ),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.3,

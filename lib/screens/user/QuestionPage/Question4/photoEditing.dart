@@ -4,7 +4,6 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:hammem/widgets/StarRating.dart';
 import 'package:image_editor_pro/image_editor_pro.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -35,11 +34,17 @@ class _PhotoEditingState extends State<PhotoEditing> {
           index: widget.index,
           question: widget.question,
         );
-      })).then((geteditimage) {
+      })).then((geteditimage) async {
         if (geteditimage != null) {
           setState(() {
             _image = geteditimage;
           });
+//          await Provider.of<QuestionProvider>(context, listen: false)
+//              .generatePdfAndView(
+//            context: context,
+//            type: QuestionType.Image,
+//            questionNum: 3,
+//          );
         }
       }).catchError((er) {
         print(er);
@@ -50,7 +55,9 @@ class _PhotoEditingState extends State<PhotoEditing> {
   Future<void> read() async {
     final filename = widget.imagePath.split('/')[2];
     var bytes = await rootBundle.load(widget.imagePath);
-    String dir = (await getApplicationDocumentsDirectory()).path;
+    String dir = Platform.isAndroid
+        ? (await getExternalStorageDirectory()).path
+        : (await getApplicationDocumentsDirectory()).path;
     _image = await writeToFile(bytes, '$dir/$filename');
     setState(() {});
   }
@@ -68,12 +75,15 @@ class _PhotoEditingState extends State<PhotoEditing> {
     return _image == null
         ? Center(
             child: RaisedButton(
-              onPressed: () async {
-                getimageditor();
-              },
-              color: Colors.blue,
-              child: new Txt('أبدأ'),
-            ),
+                onPressed: () async {
+                  getimageditor();
+                },
+                color: Color(0xffFC009E),
+                child: Text(
+                  'ابدأ',
+                  style: TextStyle(
+                      fontSize: 13.0, fontFamily: 'Cairo', color: Colors.white),
+                )),
           )
         : Column(
             children: <Widget>[
@@ -84,12 +94,17 @@ class _PhotoEditingState extends State<PhotoEditing> {
               ),
               Center(
                 child: RaisedButton(
-                  onPressed: () async {
-                    getimageditor();
-                  },
-                  color: Colors.blue,
-                  child: new Txt('تعديل'),
-                ),
+                    onPressed: () async {
+                      getimageditor();
+                    },
+                    color: Color(0xffFC009E),
+                    child: Text(
+                      'تعديل',
+                      style: TextStyle(
+                          fontSize: 13.0,
+                          fontFamily: 'Cairo',
+                          color: Colors.white),
+                    )),
               )
             ],
           );

@@ -3,6 +3,7 @@ import 'package:hammem/provider/Admin.dart';
 import 'package:hammem/provider/modelhub.dart';
 import 'package:hammem/provider/questionProvider.dart';
 import 'package:hammem/screens/Admins/Admins.dart';
+import 'package:hammem/screens/Admins/homeAdmin.dart';
 import 'package:hammem/screens/SignUp.dart';
 import 'package:hammem/screens/login.dart';
 import 'package:hammem/screens/user/HomePage.dart';
@@ -28,7 +29,9 @@ import 'package:hammem/screens/user/ShowResult.dart';
 import 'package:hammem/splash.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      MyApp(),
+    );
 
 class MyApp extends StatelessWidget {
   @override
@@ -47,7 +50,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-//        builder: DevicePreview.appBuilder,
+        //builder: DevicePreview.appBuilder,
         title: "حميم",
         color: Colors.grey,
         debugShowMaterialGrid: false,
@@ -56,7 +59,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: LoginScreen.id,
+        initialRoute: Splash.id,
         routes: {
           LoginScreen.id: (context) => LoginScreen(),
           SignUp.id: (context) => SignUp(),
@@ -66,7 +69,7 @@ class MyApp extends StatelessWidget {
           More.id: (context) => More(),
           Question.id: (context) => More(),
           Result.id: (context) => Result(),
-          Admins.id: (context) => Admins(),
+          Admins.id: (context) => HomeAdmin(),
           Question.id: (context) => Question(),
           Question1.id: (context) => Question1(),
           Qpart1.id: (context) => Qpart1(),

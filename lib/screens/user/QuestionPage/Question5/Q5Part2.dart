@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hammem/Model/questionModel.dart';
 import 'package:hammem/provider/questionProvider.dart';
+import 'package:hammem/screens/user/QuestionPage/Question5/sliderHammem.dart';
 import 'package:hammem/screens/user/QuestionPage/Question6/Question6.dart';
 import 'package:hammem/widgets/StarRating.dart';
 import 'package:provider/provider.dart';
@@ -31,15 +32,15 @@ class _Q5P2State extends State<Q5P2> {
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
-            elevation: 0.0,
             leading: IconButton(
                 icon: Icon(
-                  Icons.arrow_back_ios,
+                  Icons.arrow_forward_ios,
                   color: Colors.black,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 }),
+            elevation: 0.0,
           ),
           body: ListView(children: <Widget>[
             Row(
@@ -48,7 +49,7 @@ class _Q5P2State extends State<Q5P2> {
               children: <Widget>[
                 Text(
                   'الاستبيان',
-                  style: TextStyle(fontSize: 25.0, fontFamily: 'Cairo'),
+                  style: TextStyle(fontSize: 20.0, fontFamily: 'Cairo'),
                 )
               ],
             ),
@@ -67,13 +68,9 @@ class _Q5P2State extends State<Q5P2> {
                 ),
               ],
             ),
-            Row(
-              children: <Widget>[
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 2.09,
-                ),
-                Txt('كيف تقيم رائحة الشريك بالعادة')
-              ],
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+              child: Container(child: Txt('كيف تقيم رائحة الشريك بالعادة')),
             ),
             Container(
               child: ListView.builder(
@@ -81,9 +78,28 @@ class _Q5P2State extends State<Q5P2> {
                 shrinkWrap: true,
                 itemCount: data.length,
                 itemBuilder: (context, index) {
-                  return Rating(
-                    questionPageNumber: 4,
-                    title: data[index],
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 2.5,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          data[index],
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Spacer(),
+                        SliderHammem(
+                          title: data[index],
+                          id: 10,
+                          other: true,
+                        ),
+                      ],
+                    ),
                   );
                 },
               ),
@@ -121,7 +137,7 @@ class _Q5P2State extends State<Q5P2> {
                             'متابعه',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 25.0,
+                                fontSize: 18.0,
                                 fontFamily: 'Cairo'),
                           ),
                         ),

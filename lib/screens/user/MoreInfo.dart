@@ -132,7 +132,7 @@ class _MoreState extends State<More> {
   }
 
   Future<void> _processVideo(File rawVideoFile) async {
-    final String rand = '${new Random().nextInt(10000)}';
+    final String rand = '${new Random().nextInt(30000)}';
     final videoName = 'video$rand';
     final Directory extDir = await getApplicationDocumentsDirectory();
     final outDirPath = '${extDir.path}/Videos/$videoName';
@@ -149,9 +149,10 @@ class _MoreState extends State<More> {
       _progress = 0.0;
     });
 
-    final thumbFilePath =
-        await EncodingProvider.getThumb(rawVideoPath, thumbWidth, thumbHeight);
-
+    final thumbFilePath = await EncodingProvider.getThumb(
+        rawVideoPath,
+        MediaQuery.of(context).size.width * 0.6,
+        MediaQuery.of(context).size.height * 0.15);
     setState(() {
       _processPhase = 'Encoding video';
       _progress = 0.0;
@@ -161,7 +162,7 @@ class _MoreState extends State<More> {
         await EncodingProvider.encodeHLS(rawVideoPath, outDirPath);
 
     setState(() {
-      _processPhase = 'Uploading thumbnail to firebase storage';
+      _processPhase = 'Uploading thumbnail to storage';
       _progress = 0.0;
     });
     final thumbUrl = await _uploadFile(thumbFilePath, 'thumbnail');
@@ -186,7 +187,7 @@ class _MoreState extends State<More> {
     setState(() {
       _processPhase = '';
       _progress = 0.0;
-      _processing = false;
+      _processing = true;
     });
   }
 
@@ -226,7 +227,84 @@ class _MoreState extends State<More> {
         itemCount: _videos.length,
         itemBuilder: (BuildContext context, int index) {
           final video = _videos[index];
-          return GestureDetector(
+          return _videos.length == null
+              ? Center(child: Text('غير موجود فيديوهات الان'))
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage('assets/images/logo.png'),
+                      backgroundColor: Colors.grey[200],
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          //margin: new EdgeInsets.only(top: 12.0),
+                          child: Text(
+                            ' تم تحميله منذ ${timeago.format(new DateTime.fromMillisecondsSinceEpoch(video.uploadedAt))}',
+                            style: TextStyle(fontFamily: 'Cairo', fontSize: 12),
+                          ),
+                        ),
+                        Text("${video.videoName}"),
+                        Stack(
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return Player(
+                                    video: video,
+                                  );
+                                }));
+                              },
+                              child: ClipRRect(
+                                borderRadius: new BorderRadius.circular(8.0),
+                                child: FadeInImage.memoryNetwork(
+                                  imageCacheWidth: 200,
+                                  imageCacheHeight: 130,
+                                  fit: BoxFit.fitWidth,
+                                  placeholder: kTransparentImage,
+                                  image: video.thumbUrl,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 40,
+                              right: 80.0,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return Player(
+                                      video: video,
+                                    );
+                                  }));
+                                },
+                                child: CircleAvatar(
+                                  radius: 25,
+                                  backgroundColor: Color(0xffFC009E),
+                                  child: Icon(Icons.play_arrow),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Divider(
+                          height: 20,
+                          color: Colors.grey,
+                        )
+                      ],
+                    )
+                  ],
+                );
+          GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
@@ -242,45 +320,39 @@ class _MoreState extends State<More> {
             child: Card(
               child: new Container(
                 padding: new EdgeInsets.all(10.0),
-                child: Stack(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Stack(
+                    ClipRRect(
+                      borderRadius: new BorderRadius.circular(8.0),
+                      child: FadeInImage.memoryNetwork(
+                        placeholder: kTransparentImage,
+                        image: video.thumbUrl,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: new EdgeInsets.only(left: 20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Container(
-                              width: thumbWidth.toDouble(),
-                              height: thumbHeight.toDouble(),
-                              child: Center(child: CircularProgressIndicator()),
-                            ),
-                            ClipRRect(
-                              borderRadius: new BorderRadius.circular(8.0),
-                              child: FadeInImage.memoryNetwork(
-                                placeholder: kTransparentImage,
-                                image: video.thumbUrl,
+                              margin: new EdgeInsets.only(top: 12.0),
+                              child: Text(
+                                'Uploaded ${timeago.format(new DateTime.fromMillisecondsSinceEpoch(video.uploadedAt))}',
+                                style: TextStyle(
+                                    fontFamily: 'Cairo', fontSize: 12),
                               ),
                             ),
+                            Text("${video.videoName}"),
                           ],
                         ),
-                        Expanded(
-                          child: Container(
-                            margin: new EdgeInsets.only(left: 20.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.max,
-                              children: <Widget>[
-                                Text("${video.videoName}"),
-                                Container(
-                                  margin: new EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                      'Uploaded ${timeago.format(new DateTime.fromMillisecondsSinceEpoch(video.uploadedAt))}'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
@@ -311,24 +383,28 @@ class _MoreState extends State<More> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('ثقف نفسك',style: TextStyle(color: Colors.black),),
-        centerTitle: true,
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        leading: IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: (){
-          Navigator.pop(context);
-        }),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'ثقف نفسك',
+            style: TextStyle(color: Colors.black),
+          ),
+          centerTitle: true,
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          leading: IconButton(
+              icon: Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
+        ),
+        body: Center(child: _processing ? _getProgressBar() : _getListView()),
       ),
-      body: Center(child: _processing ? _getProgressBar() : _getListView()),
-      floatingActionButton: FloatingActionButton(
-          child: _processing
-              ? CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                )
-              : Icon(Icons.add),
-          onPressed: _takeVideo),
     );
   }
 }

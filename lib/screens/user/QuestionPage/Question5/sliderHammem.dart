@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:hammem/Model/questionModel.dart';
 import 'package:hammem/provider/questionProvider.dart';
-import 'package:hammem/widgets/StarRating.dart';
 import 'package:provider/provider.dart';
 
 class SliderHammem extends StatefulWidget {
-  SliderHammem({Key key, this.title}) : super(key: key);
-
   final String title;
+  final bool other;
+  final int id;
+
+  SliderHammem({
+    Key key,
+    this.title,
+    this.id,
+    this.other = false,
+  }) : super(key: key);
 
   @override
   _SliderHammemState createState() => _SliderHammemState();
 }
 
 class _SliderHammemState extends State<SliderHammem> {
-  int currentSelected = 4;
+  int currentSelected = 9;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +32,7 @@ class _SliderHammemState extends State<SliderHammem> {
         children: [
           customButton(
             index: 0,
-            title: 'طويل جدا',
+            title: widget.other ? 'رائعه' : 'طويل جدا',
             selected: currentSelected,
             onTap: () {
               setState(() {
@@ -35,16 +41,16 @@ class _SliderHammemState extends State<SliderHammem> {
               provider.addAnswer(
                 element: QuestionModel(
                   question: widget.title,
-                  id: 4,
+                  id: widget.id,
                   questionType: QuestionType.Text,
-                  answer: 'طويل جدا',
+                  answer: widget.other ? 'رائعه' : 'طويل جدا',
                 ),
               );
             },
           ),
           customButton(
             index: 1,
-            title: 'طويل',
+            title: widget.other ? 'جيده' : 'طويل',
             selected: currentSelected,
             onTap: () {
               setState(() {
@@ -53,16 +59,16 @@ class _SliderHammemState extends State<SliderHammem> {
               provider.addAnswer(
                 element: QuestionModel(
                   question: widget.title,
-                  id: 4,
+                  id: widget.id,
                   questionType: QuestionType.Text,
-                  answer: 'طويل',
+                  answer: widget.other ? 'جيده' : 'طويل',
                 ),
               );
             },
           ),
           customButton(
             index: 2,
-            title: 'متوسط',
+            title: widget.other ? 'لا بأس' : 'متوسط',
             selected: currentSelected,
             onTap: () {
               setState(() {
@@ -71,16 +77,16 @@ class _SliderHammemState extends State<SliderHammem> {
               provider.addAnswer(
                 element: QuestionModel(
                   question: widget.title,
-                  id: 4,
+                  id: widget.id,
                   questionType: QuestionType.Text,
-                  answer: 'متوسط',
+                  answer: widget.other ? 'لا بأس' : 'متوسط',
                 ),
               );
             },
           ),
           customButton(
             index: 3,
-            title: 'قصير',
+            title: widget.other ? 'غيرمقبوله' : 'قصير',
             selected: currentSelected,
             onTap: () {
               setState(() {
@@ -89,16 +95,16 @@ class _SliderHammemState extends State<SliderHammem> {
               provider.addAnswer(
                 element: QuestionModel(
                   question: widget.title,
-                  id: 4,
+                  id: widget.id,
                   questionType: QuestionType.Text,
-                  answer: 'قصير',
+                  answer: widget.other ? 'غيرمقبوله' : 'قصير',
                 ),
               );
             },
           ),
           customButton(
             index: 4,
-            title: 'حليق',
+            title: widget.other ? 'مرفوضه' : 'حليق',
             selected: currentSelected,
             onTap: () {
               setState(() {
@@ -107,9 +113,9 @@ class _SliderHammemState extends State<SliderHammem> {
               provider.addAnswer(
                 element: QuestionModel(
                   question: widget.title,
-                  id: 4,
+                  id: widget.id,
                   questionType: QuestionType.Text,
-                  answer: 'حليق',
+                  answer: widget.other ? 'مرفوضه' : 'حليق',
                 ),
               );
             },
@@ -129,15 +135,15 @@ class _SliderHammemState extends State<SliderHammem> {
       onTap: onTap,
       child: Container(
         margin: EdgeInsets.symmetric(
-          horizontal: 7.5,
-          vertical: 5.0,
+          horizontal: 2.5,
+          vertical: 7.0,
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: 7.0,
+          horizontal: 3.5,
           vertical: 2.5,
         ),
         decoration: BoxDecoration(
-          color: selected == index ? Colors.grey[300] : Colors.white,
+          color: selected == index ? Color(0xffFE9CD9) : Colors.white,
           border: Border.all(
             color: Colors.black,
             width: 1.0,
@@ -145,7 +151,13 @@ class _SliderHammemState extends State<SliderHammem> {
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Center(
-          child: Txt(title),
+          child: Text(
+            title,
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 12.0,
+            ),
+          ),
         ),
       ),
     );

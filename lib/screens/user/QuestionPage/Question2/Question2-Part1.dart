@@ -22,12 +22,15 @@ class _Q2Part1State extends State<Q2Part1> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          elevation: 0.0,
-          leading:  IconButton(
-              icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
+          leading: IconButton(
+              icon: Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black,
+              ),
               onPressed: () {
                 Navigator.pop(context);
               }),
+          elevation: 0.0,
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -117,43 +120,43 @@ class _Q2Part1State extends State<Q2Part1> {
               SizedBox(
                 height: 2.0,
               ),
-              CustomTxtField(
-                color: Colors.black,
-                hint: 'المركز السادس',
-                question: 'أفضل الوضعيات بالنسبة لي هي',
-              ),
-              SizedBox(
-                height: 2.0,
-              ),
-              CustomTxtField(
-                color: Colors.black,
-                hint: 'المركز السابع',
-                question: 'أفضل الوضعيات بالنسبة لي هي',
-              ),
-              SizedBox(
-                height: 2.0,
-              ),
-              CustomTxtField(
-                color: Colors.black,
-                hint: 'المركز الثامن',
-                question: 'أفضل الوضعيات بالنسبة لي هي',
-              ),
-              SizedBox(
-                height: 2.0,
-              ),
-              CustomTxtField(
-                color: Colors.black,
-                hint: 'المركز التاسع',
-                question: 'أفضل الوضعيات بالنسبة لي هي',
-              ),
-              SizedBox(
-                height: 2.0,
-              ),
-              CustomTxtField(
-                color: Colors.black,
-                hint: 'المركز العاشر',
-                question: 'أفضل الوضعيات بالنسبة لي هي',
-              ),
+//              CustomTxtField(
+//                color: Colors.black,
+//                hint: 'المركز السادس',
+//                question: 'أفضل الوضعيات بالنسبة لي هي',
+//              ),
+//              SizedBox(
+//                height: 2.0,
+//              ),
+//              CustomTxtField(
+//                color: Colors.black,
+//                hint: 'المركز السابع',
+//                question: 'أفضل الوضعيات بالنسبة لي هي',
+//              ),
+//              SizedBox(
+//                height: 2.0,
+//              ),
+//              CustomTxtField(
+//                color: Colors.black,
+//                hint: 'المركز الثامن',
+//                question: 'أفضل الوضعيات بالنسبة لي هي',
+//              ),
+//              SizedBox(
+//                height: 2.0,
+//              ),
+//              CustomTxtField(
+//                color: Colors.black,
+//                hint: 'المركز التاسع',
+//                question: 'أفضل الوضعيات بالنسبة لي هي',
+//              ),
+//              SizedBox(
+//                height: 2.0,
+//              ),
+//              CustomTxtField(
+//                color: Colors.black,
+//                hint: 'المركز العاشر',
+//                question: 'أفضل الوضعيات بالنسبة لي هي',
+//              ),
               SizedBox(
                 height: 2.0,
               ),
@@ -212,43 +215,43 @@ class _Q2Part1State extends State<Q2Part1> {
               SizedBox(
                 height: 2.0,
               ),
-              CustomTxtField(
-                color: Colors.black,
-                hint: 'المركز السادس',
-                question: 'أسؤا الوضعيات بالنسبة لي هي',
-              ),
-              SizedBox(
-                height: 2.0,
-              ),
-              CustomTxtField(
-                color: Colors.black,
-                hint: 'المركز السابع',
-                question: 'أسؤا الوضعيات بالنسبة لي هي',
-              ),
-              SizedBox(
-                height: 2.0,
-              ),
-              CustomTxtField(
-                color: Colors.black,
-                hint: 'المركز الثامن',
-                question: 'أسؤا الوضعيات بالنسبة لي هي',
-              ),
-              SizedBox(
-                height: 2.0,
-              ),
-              CustomTxtField(
-                color: Colors.black,
-                hint: 'المركز التاسع',
-                question: 'أسؤا الوضعيات بالنسبة لي هي',
-              ),
-              SizedBox(
-                height: 2.0,
-              ),
-              CustomTxtField(
-                color: Colors.black,
-                hint: 'المركز العاشر',
-                question: 'أسؤا الوضعيات بالنسبة لي هي',
-              ),
+//              CustomTxtField(
+//                color: Colors.black,
+//                hint: 'المركز السادس',
+//                question: 'أسؤا الوضعيات بالنسبة لي هي',
+//              ),
+//              SizedBox(
+//                height: 2.0,
+//              ),
+//              CustomTxtField(
+//                color: Colors.black,
+//                hint: 'المركز السابع',
+//                question: 'أسؤا الوضعيات بالنسبة لي هي',
+//              ),
+//              SizedBox(
+//                height: 2.0,
+//              ),
+//              CustomTxtField(
+//                color: Colors.black,
+//                hint: 'المركز الثامن',
+//                question: 'أسؤا الوضعيات بالنسبة لي هي',
+//              ),
+//              SizedBox(
+//                height: 2.0,
+//              ),
+//              CustomTxtField(
+//                color: Colors.black,
+//                hint: 'المركز التاسع',
+//                question: 'أسؤا الوضعيات بالنسبة لي هي',
+//              ),
+//              SizedBox(
+//                height: 2.0,
+//              ),
+//              CustomTxtField(
+//                color: Colors.black,
+//                hint: 'المركز العاشر',
+//                question: 'أسؤا الوضعيات بالنسبة لي هي',
+//              ),
               SizedBox(
                 height: 15.0,
               ),

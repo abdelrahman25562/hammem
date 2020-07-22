@@ -7,13 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:hammem/Model/video_info.dart';
 import 'package:hammem/provider/encoding_provider.dart';
 import 'package:hammem/provider/firebase_provider.dart';
-import 'package:hammem/widgets/Custom_detector.dart';
+import 'package:hammem/services/auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 class Admins extends StatefulWidget {
   static String id = 'Admins';
+
   @override
   _AdminsState createState() => _AdminsState();
 }
@@ -30,6 +31,7 @@ class _AdminsState extends State<Admins> {
   String _processPhase = '';
   final bool _debugMode = false;
   String title;
+  final _auth = Auth();
 
   @override
   void initState() {
@@ -222,12 +224,24 @@ class _AdminsState extends State<Admins> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          leading: IconButton(
+              icon: Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
+        ),
         body: Center(child: _processing ? _getProgressBar() : _getListView()),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 15.0),
+          padding: const EdgeInsets.only(bottom: 40.0),
           child: SizedBox(
             width: MediaQuery.of(context).size.width / 1.1,
-            height: MediaQuery.of(context).size.height / 8,
+            height: MediaQuery.of(context).size.height / 15,
             child: FloatingActionButton(
                 child: _processing
                     ? CircularProgressIndicator(
@@ -268,60 +282,14 @@ class _AdminsState extends State<Admins> {
         horizontal: 10.0,
       ),
       children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Image.asset(
-              'assets/images/logo.webp',
-              width: 70.0,
-              height: 75.0,
-              fit: BoxFit.cover,
-            ),
-            IconButton(icon: Icon(Icons.exit_to_app), onPressed: (){
-              //todo---
-            }),
-          ],
-        ),
-
         Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-             Padding(
-               padding: const EdgeInsets.symmetric(horizontal:20.0),
-               child: Text(
-                    'قم برفع فديو على ثقف نفسك',
-                    textAlign: TextAlign.right,
-                    textDirection: TextDirection.ltr,
-                    style: TextStyle(fontFamily: 'Cairo'),
-                  ),
-             ),
-              SizedBox(height: 20.0,),
-              CustomTextField(
-                onClick: (value) {
-                  title = value;
-                },
-                hint: 'قم باختيار عنوان للفيديو',
-                color: Colors.black,
-              )
-
-            ]),
-        SizedBox(
-          height: MediaQuery.of(context).size.height / 15,
-        ),
-        Row(
-
-            children: <Widget>[
-              Text(
-                'قم',
-                textAlign: TextAlign.right,
-                textDirection: TextDirection.ltr,
-                style: TextStyle(fontFamily: 'Cairo', color: Color(0xffFC009E)),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 2,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
-                  'برفع الفيديو',
+                  'قم برفع فديو على ثقف نفسك',
                   textAlign: TextAlign.right,
                   textDirection: TextDirection.ltr,
                   style: TextStyle(fontFamily: 'Cairo'),
@@ -329,13 +297,33 @@ class _AdminsState extends State<Admins> {
               ),
             ]),
         SizedBox(
+          height: MediaQuery.of(context).size.height / 15,
+        ),
+        Row(children: <Widget>[
+          Text(
+            'قم',
+            textAlign: TextAlign.right,
+            textDirection: TextDirection.ltr,
+            style: TextStyle(fontFamily: 'Cairo', color: Color(0xffFC009E)),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width / 2,
+            child: Text(
+              'برفع الفيديو',
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.ltr,
+              style: TextStyle(fontFamily: 'Cairo'),
+            ),
+          ),
+        ]),
+        SizedBox(
           height: 25.0,
         ),
         Center(
           child: Image.asset(
             'assets/images/upload.png',
-            width: MediaQuery.of(context).size.width *0.35,
-            height: MediaQuery.of(context).size.height *0.25,
+            width: MediaQuery.of(context).size.width * 0.35,
+            height: MediaQuery.of(context).size.height * 0.25,
             fit: BoxFit.fill,
           ),
         ),

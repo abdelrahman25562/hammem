@@ -38,7 +38,7 @@ class _ButtonQ6State extends State<ButtonQ6> {
                   borderRadius: BorderRadius.circular(5.0)),
               child: Container(
                 child: RaisedButton(
-                  color: check ? Colors.green : Colors.white,
+                  color: check ? Color(0xffFE9CD9) : Colors.white,
                   onPressed: () {
                     String answer = 'لا';
                     setState(() {

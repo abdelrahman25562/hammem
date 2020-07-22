@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hammem/Model/questionModel.dart';
 import 'package:hammem/provider/questionProvider.dart';
 import 'package:hammem/screens/user/QuestionPage/Question2/Question2.dart';
-import 'package:hammem/widgets/StarRating.dart';
+import 'package:hammem/screens/user/QuestionPage/Question5/sliderHammem.dart';
 import 'package:provider/provider.dart';
 
 class Part3 extends StatefulWidget {
@@ -77,9 +77,28 @@ class _Part3State extends State<Part3> {
                   shrinkWrap: true,
                   itemCount: data1.length,
                   itemBuilder: (context, index) {
-                    return Rating(
-                      questionPageNumber: 0,
-                      title: data1[index],
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 2.5,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            data1[index],
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Spacer(),
+                          SliderHammem(
+                            title: data1[index],
+                            id: 0,
+                            other: true,
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),
@@ -105,9 +124,28 @@ class _Part3State extends State<Part3> {
                   shrinkWrap: true,
                   itemCount: data2.length,
                   itemBuilder: (context, index) {
-                    return Rating(
-                      questionPageNumber: 0,
-                      title: data2[index],
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 2.5,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            data2[index],
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Spacer(),
+                          SliderHammem(
+                            title: data2[index],
+                            id: 0,
+                            other: true,
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),

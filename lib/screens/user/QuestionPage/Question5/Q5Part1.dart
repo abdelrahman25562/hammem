@@ -32,15 +32,15 @@ class _Q5P1State extends State<Q5P1> {
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
-            elevation: 0.0,
             leading: IconButton(
                 icon: Icon(
-                  Icons.arrow_back_ios,
+                  Icons.arrow_forward_ios,
                   color: Colors.black,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 }),
+            elevation: 0.0,
           ),
           body: ListView(children: <Widget>[
             Row(
@@ -74,7 +74,9 @@ class _Q5P1State extends State<Q5P1> {
                 itemCount: data.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.only(right: 6.0),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 2.5,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -88,9 +90,8 @@ class _Q5P1State extends State<Q5P1> {
                         Spacer(),
                         SliderHammem(
                           title: data[index],
-                        ),
-                        SizedBox(
-                          width: 10,
+                          id: 4,
+                          other: false,
                         ),
                       ],
                     ),

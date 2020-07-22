@@ -44,6 +44,7 @@ class QuestionProvider extends ChangeNotifier {
     BuildContext context,
     QuestionType type,
     int questionNum,
+    File image,
   }) async {
     List<PdfImageModel> answerImagedData = [];
     List<PdfTextModel> answerTextData = [];
@@ -122,6 +123,7 @@ class QuestionProvider extends ChangeNotifier {
         pdfLib.Page(
           build: (pdfLib.Context context) {
             return pdfLib.Column(
+              mainAxisSize: pdfLib.MainAxisSize.min,
               children: [
                 pdfLib.Expanded(
                   child: pdfLib.Container(
@@ -147,53 +149,29 @@ class QuestionProvider extends ChangeNotifier {
         ),
       );
     }
-    if (type == QuestionType.Image && questionNum != 3) {
-      questionsAnswers.forEach((element) async {
-        if (element.id == questionNum) {
-          final PdfImage image = PdfImage.file(
-            pdf.document,
-            bytes: (await rootBundle.load(
-              element.answer,
-            ))
-                .buffer
-                .asUint8List(),
-          );
-          print('name:::::**' + image.name);
-          answerImagedData.add(
-            PdfImageModel(
-              question: element.question,
-              image: image,
-            ),
-          );
-        }
-      });
+    if (type == QuestionType.Image) {
+      final PdfImage photo = PdfImage.file(
+        pdf.document,
+        bytes: (await rootBundle.load(
+          image.path,
+        ))
+            .buffer
+            .asUint8List(),
+      );
+
       pdf.addPage(
         pdfLib.Page(
           build: (pdfLib.Context context) {
             return pdfLib.Column(
-              children: answerImagedData
-                  .map(
-                    (e) => pdfLib.Row(
-                      mainAxisAlignment: pdfLib.MainAxisAlignment.start,
-                      crossAxisAlignment: pdfLib.CrossAxisAlignment.center,
-                      children: [
-                        pdfLib.Container(
-                          width: 90,
-                          height: 20,
-                          color: PdfColors.white,
-                          child: pdfLib.Image(e.image),
-                        ),
-                        pdfLib.Spacer(),
-                        pdfLib.Text(
-                          e.question,
-                          style: myStyle,
-                          textDirection: pdfLib.TextDirection.rtl,
-                        ),
-                      ],
-                    ),
-                  )
-                  .toList(),
-            ); // Center
+              mainAxisAlignment: pdfLib.MainAxisAlignment.start,
+              crossAxisAlignment: pdfLib.CrossAxisAlignment.center,
+              children: [
+                pdfLib.Container(
+                  color: PdfColors.white,
+                  child: pdfLib.Image(photo),
+                ),
+              ],
+            );
           },
         ),
       );
@@ -215,45 +193,23 @@ class QuestionProvider extends ChangeNotifier {
             return pdfLib.Column(
               children: answerTextData
                   .map(
-                    (e) => questionNum == 4
-                        ? pdfLib.Row(
-                            mainAxisAlignment: pdfLib.MainAxisAlignment.start,
-                            crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
-                            children: [
-                              pdfLib.Text(
-                                e.question,
-                                style: titleStyle,
-                                textDirection: pdfLib.TextDirection.rtl,
-                              ),
-                              pdfLib.SizedBox(
-                                width: 20.0,
-                              ),
-                              pdfLib.Text(
-                                e.answer,
-                                style: myStyle,
-                                textDirection: pdfLib.TextDirection.rtl,
-                              ),
-                            ],
-                          )
-                        : pdfLib.Column(
-                            mainAxisAlignment: pdfLib.MainAxisAlignment.start,
-                            crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
-                            children: [
-                              pdfLib.Text(
-                                e.question,
-                                style: titleStyle,
-                                textDirection: pdfLib.TextDirection.rtl,
-                              ),
-                              pdfLib.SizedBox(
-                                height: 50.0,
-                              ),
-                              pdfLib.Text(
-                                e.answer,
-                                style: myStyle,
-                                textDirection: pdfLib.TextDirection.rtl,
-                              ),
-                            ],
-                          ),
+                    (e) => pdfLib.Row(
+                      mainAxisAlignment: pdfLib.MainAxisAlignment.start,
+                      crossAxisAlignment: pdfLib.CrossAxisAlignment.center,
+                      children: [
+                        pdfLib.Text(
+                          e.question,
+                          style: myStyle,
+                          textDirection: pdfLib.TextDirection.rtl,
+                        ),
+                        pdfLib.Spacer(),
+                        pdfLib.Text(
+                          e.answer,
+                          style: myStyle,
+                          textDirection: pdfLib.TextDirection.rtl,
+                        ),
+                      ],
+                    ),
                   )
                   .toList(),
             ); // Center
@@ -262,7 +218,9 @@ class QuestionProvider extends ChangeNotifier {
       );
     }
     if (questionNum == 10) {
-      final String dir = (await getApplicationDocumentsDirectory()).path;
+      final String dir = Platform.isAndroid
+          ? (await getExternalStorageDirectory()).path
+          : (await getApplicationDocumentsDirectory()).path;
       final String path = '$dir/hammemResult.pdf';
       final File file = File(path);
       print(':::::::::::' + path);

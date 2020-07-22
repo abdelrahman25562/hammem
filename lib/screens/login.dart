@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hammem/provider/Admin.dart';
 import 'package:hammem/provider/modelhub.dart';
 import 'package:hammem/screens/user/HomePage.dart';
 import 'package:hammem/services/auth.dart';
@@ -17,6 +16,7 @@ const String testdevice = '';
 
 class LoginScreen extends StatelessWidget {
   final adminPassword = '2556250';
+  final adminMail = 'abdelrahman25562@gmail.com';
   static String id = 'LoginScreen';
   String _email, password;
   final _auth = Auth();
@@ -40,12 +40,11 @@ class LoginScreen extends StatelessWidget {
                   height: height * .01,
                 ),
                 CustomTextField(
-                  onClick: (value) {
-                    _email = value;
-                  },
-                  hint: 'الايميل',
-                  color: Colors.black
-                ),
+                    onClick: (value) {
+                      _email = value;
+                    },
+                    hint: 'الايميل',
+                    color: Colors.black),
                 SizedBox(
                   height: height * .03,
                 ),
@@ -74,7 +73,8 @@ class LoginScreen extends StatelessWidget {
                               Colors.blueAccent,
                               Colors.pinkAccent
                             ]),
-                            borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(80.0)),
                           ),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.3,
@@ -103,7 +103,9 @@ class LoginScreen extends StatelessWidget {
                     Text(
                       'ليس لدي حساب',
                       style: TextStyle(
-                          color: Colors.black, fontSize: 13, fontFamily: 'Cairo'),
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontFamily: 'Cairo'),
                     ),
                     SizedBox(
                       height: height * .02,
@@ -115,7 +117,8 @@ class LoginScreen extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             onPressed: () {
-                              Navigator.pushReplacementNamed(context, SignUp.id);
+                              Navigator.pushReplacementNamed(
+                                  context, SignUp.id);
                             },
                             child: Ink(
                               decoration: const BoxDecoration(
@@ -155,35 +158,33 @@ class LoginScreen extends StatelessWidget {
     modelhud.chageisloading(true);
     if (globalKey.currentState.validate()) {
       globalKey.currentState.save();
-      if (Provider.of<AdminMode>(context, listen: false).inadmin) {
-        if (password == adminPassword) {
-          try {
-            await _auth.signIn(_email.trim(), password.trim());
-            Navigator.pushNamed(context, Admins.id);
-          } catch (e) {
-            modelhud.chageisloading(false);
-            Scaffold.of(context).showSnackBar(SnackBar(
-              content: Text(e.message, style: TextStyle(fontFamily: 'Cairo')),
-            ));
-          }
-        } else {
-          modelhud.chageisloading(false);
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text(
-              'Something went wrong !',
-              style: TextStyle(fontFamily: 'Cairo'),
-            ),
-          ));
-        }
-      } else {
+      if (password == adminPassword && _email == adminMail) {
         try {
           await _auth.signIn(_email.trim(), password.trim());
-          Navigator.pushNamed(context, HomePage.id);
+          Navigator.pushReplacementNamed(context, Admins.id);
+        } catch (e) {
+          modelhud.chageisloading(false);
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text(e.message, style: TextStyle(fontFamily: 'Cairo')),
+          ));
+        }
+      } else if (password != adminPassword && _email != adminMail) {
+        try {
+          await _auth.signIn(_email.trim(), password.trim());
+          Navigator.pushReplacementNamed(context, HomePage.id);
         } catch (e) {
           Scaffold.of(context).showSnackBar(SnackBar(
             content: Text(e.message),
           ));
         }
+      } else {
+        modelhud.chageisloading(false);
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text(
+            'حدث خطأ ما !',
+            style: TextStyle(fontFamily: 'Cairo'),
+          ),
+        ));
       }
     }
     modelhud.chageisloading(false);
